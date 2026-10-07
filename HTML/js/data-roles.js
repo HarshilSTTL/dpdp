@@ -3,7 +3,7 @@ window.MUNICIPAL_ROLES = [
     id: 'ACT-01',
     title: 'Municipal Commissioner',
     category: 'Leadership',
-    description: 'Executive Sponsor & Administrative Head of Ahmedabad Municipal Corporation.',
+    description: 'Executive Sponsor & Administrative Head of Bharat Electronics Limited.',
     authorityLevel: 'Executive',
     tone: 'purple',
   },

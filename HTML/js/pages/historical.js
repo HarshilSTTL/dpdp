@@ -7,13 +7,13 @@
   // ---- Mock data ----
   const SEED = {
     sources: [
-      { sourceId: 1, sourceName: 'AMC Legacy Tax Mainframe', engineType: 'Oracle 11g', environment: 'PRODUCTION' },
+      { sourceId: 1, sourceName: 'BEL Legacy Tax Mainframe', engineType: 'Oracle 11g', environment: 'PRODUCTION' },
       { sourceId: 2, sourceName: 'Vital Records Archive', engineType: 'MS SQL Server 2008', environment: 'ARCHIVE' },
       { sourceId: 3, sourceName: 'Water Billing Legacy DB', engineType: 'MySQL 5.5', environment: 'STAGING' },
     ],
     catalog: [
-      { catalogId: 1, sourceName: 'AMC Legacy Tax Mainframe', tableName: 'tax_assessment_2014', columnName: 'owner_aadhaar_no', piiCategory: 'AADHAAR', confidenceScore: 99, classificationStatus: 'SENSITIVE', legalBasisName: 'Section 7(b) State Service' },
-      { catalogId: 2, sourceName: 'AMC Legacy Tax Mainframe', tableName: 'tax_assessment_2014', columnName: 'owner_mobile', piiCategory: 'MOBILE', confidenceScore: 96, classificationStatus: 'PERSONAL', legalBasisName: 'Section 6 Consent' },
+      { catalogId: 1, sourceName: 'BEL Legacy Tax Mainframe', tableName: 'tax_assessment_2014', columnName: 'owner_aadhaar_no', piiCategory: 'AADHAAR', confidenceScore: 99, classificationStatus: 'SENSITIVE', legalBasisName: 'Section 7(b) State Service' },
+      { catalogId: 2, sourceName: 'BEL Legacy Tax Mainframe', tableName: 'tax_assessment_2014', columnName: 'owner_mobile', piiCategory: 'MOBILE', confidenceScore: 96, classificationStatus: 'PERSONAL', legalBasisName: 'Section 6 Consent' },
       { catalogId: 3, sourceName: 'Vital Records Archive', tableName: 'birth_register', columnName: 'father_name', piiCategory: 'NAME', confidenceScore: 92, classificationStatus: 'PERSONAL', legalBasisName: 'RBD Act 1969' },
       { catalogId: 4, sourceName: 'Water Billing Legacy DB', tableName: 'consumer_master', columnName: 'email_id', piiCategory: 'EMAIL', confidenceScore: 97, classificationStatus: 'PERSONAL', legalBasisName: null },
     ],
@@ -22,7 +22,7 @@
       { campaignId: 2, campaignCode: 'CMP-5-2-2026-002', campaignTitle: 'Smart Water Meter Voluntary Alerts Reaffirmation', status: 'ACTIVE', dispatchChannels: 'SMS, Citizen Portal', totalPrincipalsTargeted: 72300, consentsReaffirmed: 41870, consentsWithdrawn: 1985, statutoryGraceDeadline: '2027-01-31' },
     ],
     lineage: [
-      { lineageId: 1, processName: 'ETL_TAX_TO_DWH', processType: 'ETL', sourceTables: 'tax_assessment_2014', destinationTarget: 'AMC Data Warehouse', piiElementsProcessed: 'Name, Tenement ID, Aadhaar (blind index)', auditVerdict: 'COMPLIANT', hasPurposeCreepRisk: false },
+      { lineageId: 1, processName: 'ETL_TAX_TO_DWH', processType: 'ETL', sourceTables: 'tax_assessment_2014', destinationTarget: 'BEL Data Warehouse', piiElementsProcessed: 'Name, Tenement ID, Aadhaar (blind index)', auditVerdict: 'COMPLIANT', hasPurposeCreepRisk: false },
       { lineageId: 2, processName: 'SMS_PROMO_EXPORT', processType: 'BATCH EXPORT', sourceTables: 'consumer_master', destinationTarget: 'Third-party SMS vendor', piiElementsProcessed: 'Mobile, Email', auditVerdict: 'NON_COMPLIANT', hasPurposeCreepRisk: true },
       { lineageId: 3, processName: 'VITAL_CERT_PRINT', processType: 'REPORT', sourceTables: 'birth_register', destinationTarget: 'Certificate print service', piiElementsProcessed: 'Name, Date of Birth', auditVerdict: 'COMPLIANT', hasPurposeCreepRisk: false },
     ],

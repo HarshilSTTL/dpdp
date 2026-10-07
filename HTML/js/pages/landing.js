@@ -71,7 +71,7 @@
       '@context': 'https://kantara.org/receipt/v1.1.0',
       receiptId: 'REC-KANTARA-2026-90412',
       issuanceDate: new Date().toISOString(),
-      dataFiduciary: { legalName: 'Ahmedabad Municipal Corporation', cinOrUlbCode: 'ULB-GJ-AMC-001', dpoContact: 'dpo@ahmedabadcity.gov.in' },
+      dataFiduciary: { legalName: 'Bharat Electronics Limited', cinOrUlbCode: 'ULB-GJ-BEL-001', dpoContact: 'dpo@ahmedabadcity.gov.in' },
       dataPrincipalBlindIndex: 'HMAC-SHA256:7B8C4...90A2',
       purposes: [{ code: 'WATER_UTILITY_DELIVERY', legalBasis: 'Section 6(1) DPDP Act 2023', description: 'Meter reading, billing, and municipal water line grievance resolution', retentionPeriod: 'Service active duration + 3 fiscal audit years' }],
       withdrawalMechanism: 'DPDP-GovShield Citizen Portal -> Self-Service Privacy Center',
@@ -119,7 +119,7 @@
       '<div class="auth-head"><div class="row" style="flex-wrap:nowrap"><span style="font-size:24px">🛡️</span><div><h2>Municipal Officer &amp; Citizen Authentication</h2><p>Zero Plaintext Aadhaar • DigiLocker VT • 16-Role Perspective Switcher</p></div></div><button class="x" data-close aria-label="Close">×</button></div>' +
       '<div class="modal-tabs" id="authTabs"><button data-t="roles" class="active">👥 16 Municipal Roles</button><button data-t="otp">📱 Mobile OTP Login</button><button data-t="digilocker">🔑 DigiLocker VT</button></div>' +
       '<div class="auth-body" id="authBody"></div>' +
-      '<div class="auth-foot"><span>🏢 Ahmedabad Municipal Corporation (AMC)</span><span class="mono xsmall faint">OIDC / OAuth 2.0 PKCE Sovereign Mesh</span></div>');
+      '<div class="auth-foot"><span>🏢 Bharat Electronics Limited (BEL)</span><span class="mono xsmall faint">OIDC / OAuth 2.0 PKCE Sovereign Mesh</span></div>');
     m.root.firstElementChild.classList.add('auth');
     const body = $('#authBody', m.root);
 
@@ -211,7 +211,7 @@
     crypto() {
       return '<div class="tb-grid"><form class="tb-form" id="tbForm" novalidate><h4>🔑 HMAC-SHA256 Blind Index</h4>' +
         '<label for="kType">Identifier Type:</label><select id="kType" class="field">' + opts(['property_no', 'water_connection_no', 'mobile', 'email', 'digilocker_vt'], 'property_no') + '</select>' +
-        '<label for="kVal">Raw Input Value (e.g. Property / Mobile / VT):</label><input id="kVal" class="field mono" value="AMC-PROP-WEST-98214">' +
+        '<label for="kVal">Raw Input Value (e.g. Property / Mobile / VT):</label><input id="kVal" class="field mono" value="BEL-PROP-WEST-98214">' +
         '<div class="alert alert-error hidden" id="tbErr" style="margin-top:10px;font-size:12px"></div><button class="btn btn-primary btn-block" style="margin-top:16px" type="submit">▶ POST /api/v1/crypto/blind-index</button>' +
         '<p class="xsmall" style="color:#94a3b8;margin:8px 0 0">Tip: try a 12-digit Aadhaar-like number (e.g. 2345 6789 0123) to see Invariant #3 block it.</p></form>' + out(idle) + '</div>';
     },

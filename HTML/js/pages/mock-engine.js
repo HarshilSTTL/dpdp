@@ -37,7 +37,7 @@
       municipalRetentionMandate: cite,
       factualReasoning: req.serviceName + ' constitutes an official municipal statutory record under ' + cite + '. Section 17(4) of the DPDP Act, 2023 disapplies the erasure obligation where retention is necessary for compliance with a law in force; the record therefore cannot be erased while the statutory retention mandate applies.',
       appealRoutes: [
-        { tier: 1, forum: 'Office of the Data Protection Officer, AMC', filingWindow: '30 days from notice issuance', contactUrlOrEmail: 'dpo@ahmedabadcity.gov.in' },
+        { tier: 1, forum: 'Office of the Data Protection Officer, BEL', filingWindow: '30 days from notice issuance', contactUrlOrEmail: 'dpo@ahmedabadcity.gov.in' },
         { tier: 2, forum: 'Data Protection Board of India (Section 13(3))', filingWindow: 'Upon exhaustion of municipal grievance or non-response within Rule 14(2) period', contactUrlOrEmail: 'https://dpbi.gov.in/complaints' },
         { tier: 3, forum: 'Telecom Disputes Settlement and Appellate Tribunal (TDSAT - Section 29)', filingWindow: 'Within 60 days from an order of the Board', contactUrlOrEmail: 'https://tdsat.gov.in' },
       ],

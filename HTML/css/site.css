@@ -216,3 +216,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 
 .site-footer h4 { color: #fff; margin: 0 0 8px; font-size: 14px; }
 .site-footer a { color: #60a5fa; }
 .site-footer p { margin: 4px 0; }
+
+/* BEL logo in the header */
+.brand-logo.brand-logo-img { width: auto; height: 44px; padding: 4px 8px; background: #fff; border: 1px solid var(--c-border); }
+.brand-logo-img img { height: 100%; width: auto; display: block; }

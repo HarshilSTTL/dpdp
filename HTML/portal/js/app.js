@@ -230,7 +230,7 @@ function showRule23InquiryGateModal() {
         <span class="alert-icon">📜</span>
         <div>
           <strong>Statutory Verification Requirement:</strong>
-          Under Rule 23 and the Seventh Schedule of the DPDP Rules 2025, regulatory inspection requires verification of an active Board inquiry summons. All disclosures are logged to AMC's immutable Regulatory Disclosure Register.
+          Under Rule 23 and the Seventh Schedule of the DPDP Rules 2025, regulatory inspection requires verification of an active Board inquiry summons. All disclosures are logged to BEL's immutable Regulatory Disclosure Register.
         </div>
       </div>
 
@@ -984,7 +984,7 @@ function saveNewConsentManager() {
     syncCadence: "Real-time Webhook"
   });
 
-  alert(`Consent Manager "${name}" bound successfully to AMC DPDP Bridge.`);
+  alert(`Consent Manager "${name}" bound successfully to BEL DPDP Bridge.`);
   closeModalDirect();
   renderConsentManagers();
 }
@@ -1326,7 +1326,7 @@ function showVPCOverviewModal() {
       </table>
 
       <div class="mt-3 p-3" style="background:var(--gray-50);border-radius:6px;font-size:12px;line-height:1.6;">
-        <strong>Audit Certificate:</strong> AMC Urban Local Body has integrated the MeitY DigiLocker Parental Attestation API. When a guardian consents for a child, the API validates the parent-child relationship against the Birth-Death Registry (SYS-004) and binds a cryptographic token to the consent ledger.
+        <strong>Audit Certificate:</strong> BEL Urban Local Body has integrated the MeitY DigiLocker Parental Attestation API. When a guardian consents for a child, the API validates the parent-child relationship against the Birth-Death Registry (SYS-004) and binds a cryptographic token to the consent ledger.
       </div>
     </div>
     <div class="modal-footer">
@@ -2071,7 +2071,7 @@ function showPrincipalNotifyModal(id) {
       <div class="detail-row mb-2"><div class="detail-label">Recipients</div><div class="detail-value">12,000 Affected Citizens</div></div>
       <div class="detail-row mb-2"><div class="detail-label">Message Preview (Gujarati & English)</div>
         <div style="background:var(--gray-50);padding:14px;border-radius:6px;font-size:13px;">
-          "Important Security Notice from AMC: Your birth/death record reference was exposed in a security incident on 01-Sep. Immediate containment has been executed. No financial data was exposed. Contact DPO at dpo@amc.gov.in for queries."
+          "Important Security Notice from BEL: Your birth/death record reference was exposed in a security incident on 01-Sep. Immediate containment has been executed. No financial data was exposed. Contact DPO at dpo@amc.gov.in for queries."
         </div>
       </div>
     </div>
@@ -2232,7 +2232,7 @@ function renderResidencyTable() {
       <td><span class="badge badge-neutral">${s.datacenterTier || 'Tier-III'}</span></td>
       <td><span class="badge badge-success">✓ MeitY Empanelled</span></td>
       <td>
-        <span class="badge badge-info">Zero Egress (AMC Policy)</span>
+        <span class="badge badge-info">Zero Egress (BEL Policy)</span>
         <br><span style="font-size:10px;color:var(--gray-500);">Sec 16 Blacklist Compliant</span>
       </td>
       <td><code>${s.encryptionAtRest || 'AES-256 (HSM)'}</code></td>
@@ -2391,7 +2391,7 @@ function generateRoPAPrompt() {
   showModal(`
     <div class="modal-header"><h2>Records of Processing Activities (RoPA - Sec 4 & 8)</h2><button class="modal-close" onclick="closeModalDirect()">✕</button></div>
     <div class="modal-body">
-      <div class="alert-banner info"><span class="alert-icon">📄</span>Statutory RoPA Report for Ahmedabad Municipal Corporation generated.</div>
+      <div class="alert-banner info"><span class="alert-icon">📄</span>Statutory RoPA Report for Bharat Electronics Limited generated.</div>
       <div class="detail-grid mt-2">
         <div class="detail-row"><div class="detail-label">Total Processing Activities</div><div class="detail-value">12 Registered Systems</div></div>
         <div class="detail-row"><div class="detail-label">Total Data Fields</div><div class="detail-value">20 Personal Data Fields</div></div>
@@ -2789,7 +2789,7 @@ function switchCitizenTab(tab) {
     content.innerHTML = `
       <div class="card">
         <div class="card-header">
-          <h3>${isGuardian ? "Personal Data of Minor Held by AMC" : "My Personal Data Held by AMC"}</h3>
+          <h3>${isGuardian ? "Personal Data of Minor Held by BEL" : "My Personal Data Held by BEL"}</h3>
           <span class="text-xs text-muted">Article 11(1) Right to Access Data & Processing Grounds</span>
         </div>
         <div class="card-body">
@@ -2887,7 +2887,7 @@ function switchCitizenTab(tab) {
         <div class="flex-between items-center mb-3">
           <div>
             <h3 style="font-size:18px;color:var(--navy-900);margin-bottom:4px;">Registered Nominee & Legal Representative</h3>
-            <span class="text-xs text-muted">Statutory Anchor: Section 14 of DPDP Act 2023 · AMC Municipal Data Registry</span>
+            <span class="text-xs text-muted">Statutory Anchor: Section 14 of DPDP Act 2023 · BEL Municipal Data Registry</span>
           </div>
           <span class="badge badge-success" style="font-size:12px;padding:6px 12px;">✓ Active & DigiLocker Verified</span>
         </div>
@@ -2923,7 +2923,7 @@ function switchCitizenTab(tab) {
         <div class="card-body">
           <div class="alert-banner info mb-3">
             <span class="alert-icon">ℹ️</span>
-            <div><strong>Your Section 11(1)(b) Right to Know:</strong> You are statutorily entitled to know the identities of all data fiduciaries and data processors with whom your personal data has been shared by Ahmedabad Municipal Corporation.</div>
+            <div><strong>Your Section 11(1)(b) Right to Know:</strong> You are statutorily entitled to know the identities of all data fiduciaries and data processors with whom your personal data has been shared by Bharat Electronics Limited.</div>
           </div>
           <table class="data-table">
             <thead>
@@ -2957,7 +2957,7 @@ function showSection17RefusalNotice(consentId) {
   const isGuardian = currentRoleKey === 'guardian';
   const list = isGuardian ? GUARDIAN_DATA.childConsents : CITIZEN_DATA.myConsents;
   const c = list.find(item => item.id === consentId) || list[0];
-  const refNum = `REF-AMC-2026-${c.id.replace('CON-', '')}`;
+  const refNum = `REF-BEL-2026-${c.id.replace('CON-', '')}`;
 
   showModal(`
     <div class="modal-header" style="background:#fef2f2;border-bottom:2px solid #ef4444;">
@@ -2985,7 +2985,7 @@ function showSection17RefusalNotice(consentId) {
         </div>
 
         <div style="font-size:13px;line-height:1.6;color:#1e293b;margin-bottom:14px;">
-          <strong>To:</strong> ${currentUser ? currentUser.name : 'Data Principal'} (${c.principalId || 'Citizen ID: AMC-CID-890124'})<br>
+          <strong>To:</strong> ${currentUser ? currentUser.name : 'Data Principal'} (${c.principalId || 'Citizen ID: BEL-CID-890124'})<br>
           <strong>Subject:</strong> Formal Reasoned Refusal of Erasure / Withdrawal Request for Service: <em>${c.purpose}</em>
         </div>
 
@@ -2998,7 +2998,7 @@ function showSection17RefusalNotice(consentId) {
         <ol style="font-size:12px;color:#334155;line-height:1.6;padding-left:20px;margin-bottom:14px;">
           <li>The personal data requested for erasure constitutes the statutory Tenement Assessment Record maintained pursuant to <strong>Section 99 & Chapter VIII of the Gujarat Municipalities Act, 1963</strong> and the Bombay Provincial Municipal Corporations Act, 1949.</li>
           <li>Processing is executed under <strong>Section 7(b) (State Function)</strong> of the Digital Personal Data Protection Act, 2023, for the lawful assessment, demand, and collection of municipal taxes.</li>
-          <li>By virtue of Section 17(4), your right to erasure under Section 12(3) and AMC's obligation to erase data under Section 8(7) are <strong>statutorily disapplied</strong> so long as property ownership persists in municipal jurisdiction.</li>
+          <li>By virtue of Section 17(4), your right to erasure under Section 12(3) and BEL's obligation to erase data under Section 8(7) are <strong>statutorily disapplied</strong> so long as property ownership persists in municipal jurisdiction.</li>
         </ol>
 
         <h4 style="font-size:13px;color:#1e293b;margin-bottom:6px;">2. Communication Channel Mitigation:</h4>
@@ -3010,13 +3010,13 @@ function showSection17RefusalNotice(consentId) {
           <div>
             <div style="font-size:11px;font-weight:700;color:#1e293b;">Statutory Appellate Procedure:</div>
             <div style="font-size:11px;color:#64748b;">
-              1. First Administrative Appeal: DPO, AMC (dpo@amc.gov.in) within 30 days.<br>
+              1. First Administrative Appeal: DPO, BEL (dpo@amc.gov.in) within 30 days.<br>
               2. Second Statutory Appeal: Data Protection Board of India (DPBI) under Section 13(3).
             </div>
           </div>
           <div style="text-align:right;">
             <div style="font-size:12px;font-weight:800;color:#1e293b;">Shri Suresh B. Joshi</div>
-            <div style="font-size:11px;color:#64748b;">Assessor & Tax Collector<br>Ahmedabad Municipal Corporation</div>
+            <div style="font-size:11px;color:#64748b;">Assessor & Tax Collector<br>Bharat Electronics Limited</div>
             <div style="font-size:10px;color:#16a34a;margin-top:2px;">Digitally Signed via e-Gov HSM</div>
           </div>
         </div>
@@ -3213,7 +3213,7 @@ function showNominationCertificateModal() {
         </div>
 
         <div style="font-size:13px;line-height:1.8;color:#1e293b;margin-bottom:16px;">
-          This is to certify that the Data Principal named below has legally registered a designated nominee under <strong>Section 14</strong> of the DPDP Act, 2023. In the event of death or incapacity of the Data Principal, the Nominee shall be entitled to exercise all statutory data rights across all Ahmedabad Municipal Corporation departments and processing systems.
+          This is to certify that the Data Principal named below has legally registered a designated nominee under <strong>Section 14</strong> of the DPDP Act, 2023. In the event of death or incapacity of the Data Principal, the Nominee shall be entitled to exercise all statutory data rights across all Bharat Electronics Limited departments and processing systems.
         </div>
 
         <table class="data-table mb-3" style="font-size:12px;">
@@ -3236,7 +3236,7 @@ function showNominationCertificateModal() {
           </div>
           <div style="text-align:right;">
             <div style="font-weight:700;color:#0f172a;">Shri Rajesh M. Patel, IAS</div>
-            <div>Data Protection Officer, AMC</div>
+            <div>Data Protection Officer, BEL</div>
             <div style="color:var(--green-700);font-weight:600;">✓ Digitally Signed & Sealed</div>
           </div>
         </div>
@@ -3436,7 +3436,7 @@ function showStatutoryFilingModal(incidentId) {
         <div class="filing-sig-block">
           <div>
             <span style="font-size:11px;color:#64748b;">Simulated Filing Reference:</span><br>
-            <code>SIM/AMC/DPO/DPBI/2026/003-F1</code>
+            <code>SIM/BEL/DPO/DPBI/2026/003-F1</code>
           </div>
           <div style="text-align:right;">
             <div style="font-weight:700;color:#0f172a;">${dpbi.dpoDetails.name}</div>
@@ -3456,7 +3456,7 @@ function showStatutoryFilingModal(incidentId) {
 
         <table class="filing-table">
           <tbody>
-            <tr><th>Reporting Entity</th><td>Ahmedabad Municipal Corporation (Govt. of Gujarat)</td></tr>
+            <tr><th>Reporting Entity</th><td>Bharat Electronics Limited (Govt. of Gujarat)</td></tr>
             <tr><th>Simulated CERT-In Token</th><td><code style="font-weight:700;color:var(--navy-800);">${certin.incidentTrackingId}</code></td></tr>
             <tr><th>Incident Category</th><td><strong>${certin.incidentCategory}</strong></td></tr>
             <tr><th>Statutory SLA Compliance</th><td><span class="badge badge-success">✓ ${certin.reportingDeadline}</span></td></tr>
@@ -3654,7 +3654,7 @@ function renderSimStep() {
                 🏛️ ${service.title}
               </div>
               <div style="font-size:12px;color:var(--gray-600);margin-bottom:12px;">
-                Ahmedabad Municipal Corporation · ${service.deptName}
+                Bharat Electronics Limited · ${service.deptName}
               </div>
               <div style="background:#fff;border-left:4px solid var(--blue-500);padding:12px;font-size:13px;color:var(--gray-800);line-height:1.6;border-radius:4px;margin-bottom:14px;">
                 ${noticeText}
@@ -3764,7 +3764,7 @@ function renderSimStep() {
     const simConsentId = `CON-2026-001${SAMPLE_DATA.consentRecords.length + 1}`;
 
     const capturePayload = {
-      principalId: isMinor ? "AMC-CHD-991204" : (service.id.includes('BIRTH') ? "AMC-CID-781290" : "AMC-CID-890124"),
+      principalId: isMinor ? "BEL-CHD-991204" : (service.id.includes('BIRTH') ? "BEL-CID-781290" : "BEL-CID-890124"),
       principalName: applicant,
       purposeCode: service.code,
       serviceTitle: service.title,
@@ -3887,7 +3887,7 @@ function executeSimConsentCapture(consentId) {
   const newRecord = {
     id: consentId,
     principalName: service.applicantDefault,
-    principalId: isMinor ? "AMC-CHD-991204" : (service.id.includes('BIRTH') ? "AMC-CID-781290" : "AMC-CID-890124"),
+    principalId: isMinor ? "BEL-CHD-991204" : (service.id.includes('BIRTH') ? "BEL-CID-781290" : "BEL-CID-890124"),
     purpose: service.title,
     system: "SYS-013",
     status: "active",
@@ -3909,7 +3909,7 @@ function executeSimConsentCapture(consentId) {
       beneficiary: "Master Rohan D. Rana (Age 12)",
       antiProfilingEnforced: true,
       timestamp: new Date().toISOString(),
-      signedBy: "Municipal Education Officer & DPO, AMC"
+      signedBy: "Municipal Education Officer & DPO, BEL"
     } : null,
     vpc: (isMinor && !isRule12Exempt) ? {
       verified: true,
@@ -3944,7 +3944,7 @@ function executeSimConsentCapture(consentId) {
   renderSimStep();
   const msg = isRule12Exempt
     ? `Rule 12 Exemption Record Generated & Signed!\n\nToken: EXM-R12-2026-0091\nParental consent statutorily exempted under Fourth Schedule Part B.\nSection 9(3) anti-profiling lock active.`
-    : `Consent Captured & Signed!\n\nReceipt ID: ${simCapturedReceipt.consentReceiptID}\nAnchored to AMC Immutable Audit Ledger.`;
+    : `Consent Captured & Signed!\n\nReceipt ID: ${simCapturedReceipt.consentReceiptID}\nAnchored to BEL Immutable Audit Ledger.`;
   alert(msg);
 }
 
@@ -4346,7 +4346,7 @@ function renderDropInSdk() {
     </div>
 
     <div style="font-size:12px;font-weight:700;color:var(--gray-700);margin-bottom:6px;">Copy & Paste into External Portal HTML:</div>
-    <div class="code-viewer mb-3">${escapeHtml(`<!-- 1. Include AMC DPDP-GovShield Web SDK -->
+    <div class="code-viewer mb-3">${escapeHtml(`<!-- 1. Include BEL DPDP-GovShield Web SDK -->
 <script src="https://dpdp.amc.gov.in/sdk/v1/govshield-widget.js" 
         data-api-key="amc_live_pk_9d42e6f77c384a20b12d5930fa12" async></script>
 

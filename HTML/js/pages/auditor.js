@@ -22,10 +22,10 @@
     ['CTRL-BRC-008', 'Breach notification pipeline reachable (CERT-In / DPBI)'],
   ];
   const PROCESSORS = [
-    { vendorName: 'Gujarat Informatics Ltd (GIL)', contractRef: 'AMC/IT/DPA/2024/017', nextAuditDue: '2026-12-15', hasAuditRightsClause: true, dpaStatus: 'COMPLIANT' },
-    { vendorName: 'Silver Touch Technologies', contractRef: 'AMC/IT/DPA/2025/003', nextAuditDue: '2027-01-20', hasAuditRightsClause: true, dpaStatus: 'COMPLIANT' },
-    { vendorName: 'CityPay SMS Gateway Pvt Ltd', contractRef: 'AMC/IT/DPA/2023/044', nextAuditDue: '2026-11-02', hasAuditRightsClause: false, dpaStatus: 'REMEDIATION_PENDING' },
-    { vendorName: 'NIC Cloud Hosting (MeghRaj)', contractRef: 'AMC/IT/DPA/2022/009', nextAuditDue: '2027-03-05', hasAuditRightsClause: true, dpaStatus: 'COMPLIANT' },
+    { vendorName: 'Gujarat Informatics Ltd (GIL)', contractRef: 'BEL/IT/DPA/2024/017', nextAuditDue: '2026-12-15', hasAuditRightsClause: true, dpaStatus: 'COMPLIANT' },
+    { vendorName: 'Silver Touch Technologies', contractRef: 'BEL/IT/DPA/2025/003', nextAuditDue: '2027-01-20', hasAuditRightsClause: true, dpaStatus: 'COMPLIANT' },
+    { vendorName: 'CityPay SMS Gateway Pvt Ltd', contractRef: 'BEL/IT/DPA/2023/044', nextAuditDue: '2026-11-02', hasAuditRightsClause: false, dpaStatus: 'REMEDIATION_PENDING' },
+    { vendorName: 'NIC Cloud Hosting (MeghRaj)', contractRef: 'BEL/IT/DPA/2022/009', nextAuditDue: '2027-03-05', hasAuditRightsClause: true, dpaStatus: 'COMPLIANT' },
   ];
 
   const api = {

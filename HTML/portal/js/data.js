@@ -53,8 +53,8 @@ var USERS = {
   'ciso':              { name: 'Smt. Kavita R. Shah',        designation: 'Chief Information Security Officer', email: 'ciso@amc.gov.in',   avatar: 'KS' },
   'security-analyst':  { name: 'Shri Hiren D. Jadeja',       designation: 'Security Analyst',           email: 'hiren.jadeja@amc.gov.in',  avatar: 'HJ' },
   'it-admin':          { name: 'Shri Nikhil S. Raval',       designation: 'IT Administrator',           email: 'nikhil.raval@amc.gov.in',  avatar: 'NR' },
-  'citizen':           { name: 'Shri Ramesh K. Patel',       designation: 'Citizen / Data Principal',   email: 'ramesh.patel@gmail.com',   avatar: 'RK', citizenId: 'AMC-CID-890124', tenementNo: 'TEN-NW-2024-89012', waterIndexNo: 'WTR-041289', aadhaarMasked: 'XXXX-XXXX-4523' },
-  'guardian':          { name: 'Smt. Anita D. Rana',         designation: 'Legal Guardian',             email: 'anita.rana@gmail.com',     avatar: 'AR', citizenId: 'AMC-CID-224890', aadhaarMasked: 'XXXX-XXXX-2234', childName: 'Master Rohan D. Rana (age 12)', childId: 'AMC-CHD-991204' },
+  'citizen':           { name: 'Shri Ramesh K. Patel',       designation: 'Citizen / Data Principal',   email: 'ramesh.patel@gmail.com',   avatar: 'RK', citizenId: 'BEL-CID-890124', tenementNo: 'TEN-NW-2024-89012', waterIndexNo: 'WTR-041289', aadhaarMasked: 'XXXX-XXXX-4523' },
+  'guardian':          { name: 'Smt. Anita D. Rana',         designation: 'Legal Guardian',             email: 'anita.rana@gmail.com',     avatar: 'AR', citizenId: 'BEL-CID-224890', aadhaarMasked: 'XXXX-XXXX-2234', childName: 'Master Rohan D. Rana (age 12)', childId: 'BEL-CHD-991204' },
   'auditor':           { name: 'CA Mahesh T. Agarwal',       designation: 'Independent Data Auditor',   email: 'mahesh@agarwalaudit.in',   avatar: 'MA' },
   'dpb-inspector':     { name: 'Shri Vinod G. Mishra',       designation: 'DPB Inspector',              email: 'vinod.mishra@dpb.gov.in',  avatar: 'VM', inquiryOrder: 'INQ-DPBI-2026-0041' }
 };
@@ -93,7 +93,7 @@ var ADMIN_DATA = {
 // ── Citizen-Specific Data (for Shri Ramesh K. Patel) ────────
 
 var CITIZEN_DATA = {
-  citizenId: "AMC-CID-890124",
+  citizenId: "BEL-CID-890124",
   tenementNo: "TEN-NW-2024-89012",
   waterIndexNo: "WTR-041289",
   myConsents: [
@@ -138,7 +138,7 @@ var CITIZEN_DATA = {
     { id: 'RR-2026-0090', type: 'Access (Sec 11)', status: 'completed', submittedAt: '2026-08-01T09:00:00', completedAt: '2026-08-10T10:00:00', description: 'Complete data access & recipient disclosure request under Section 11(1)' }
   ],
   myData: [
-    { field: 'Citizen Municipal ID', value: 'AMC-CID-890124', source: 'Ahmedabad Citizen Registry', legalGround: 'Sec 7(b) State Function' },
+    { field: 'Citizen Municipal ID', value: 'BEL-CID-890124', source: 'Ahmedabad Citizen Registry', legalGround: 'Sec 7(b) State Function' },
     { field: 'Property Tenement No', value: 'TEN-NW-2024-89012', source: 'Property Tax Portal (SYS-001)', legalGround: 'Sec 7(b) State Function' },
     { field: 'Full Legal Name', value: 'Shri Ramesh Kantilal Patel', source: 'Property Tax Portal (SYS-001)', legalGround: 'Sec 7(b) State Function' },
     { field: 'Water Consumer Index', value: 'WTR-041289', source: 'Water Connection Portal (SYS-006)', legalGround: 'Sec 7(b) State Function' },
@@ -162,7 +162,7 @@ var CITIZEN_DATA = {
     aadhaarMasked: "XXXX-XXXX-9102",
     registeredAt: "2026-08-15T11:30:00Z",
     verificationMethod: "DigiLocker Family ID Attestation",
-    nominationToken: "NOM-AMC-2026-00412",
+    nominationToken: "NOM-BEL-2026-00412",
     status: "active",
     statutoryNotice: "Pursuant to Section 14 of the Digital Personal Data Protection Act, 2023, the nominee registered herein shall have the legal authority to exercise all rights under the Act on behalf of the Data Principal in the event of death or medical incapacity."
   }
@@ -171,9 +171,9 @@ var CITIZEN_DATA = {
 // ── Guardian-Specific Data (for Smt. Anita D. Rana) ─────────
 
 var GUARDIAN_DATA = {
-  guardianCitizenId: "AMC-CID-224890",
+  guardianCitizenId: "BEL-CID-224890",
   childName: "Master Rohan D. Rana",
-  childId: "AMC-CHD-991204",
+  childId: "BEL-CHD-991204",
   childConsents: [
     { 
       id: "CON-2026-00150",
@@ -193,7 +193,7 @@ var GUARDIAN_DATA = {
         method: "DigiLocker Family ID Linkage",
         token: "VPC-DL-2026-098842",
         guardianName: "Smt. Anita D. Rana",
-        guardianCitizenId: "AMC-CID-224890",
+        guardianCitizenId: "BEL-CID-224890",
         guardianAadhaarMasked: "XXXX-XXXX-2234",
         childAge: 12,
         profilingProhibited: true,
@@ -204,7 +204,7 @@ var GUARDIAN_DATA = {
     }
   ],
   childData: [
-    { field: 'Child Municipal ID', value: 'AMC-CHD-991204', source: 'Birth-Death Registry (SYS-004)', minorProtection: 'Protected under Sec 9' },
+    { field: 'Child Municipal ID', value: 'BEL-CHD-991204', source: 'Birth-Death Registry (SYS-004)', minorProtection: 'Protected under Sec 9' },
     { field: 'Child Full Name', value: 'Rohan Dinesh Rana', source: 'Vaccination Drive', minorProtection: 'Protected under Sec 9' },
     { field: 'Date of Birth', value: '15 Mar 2014 (Age 12)', source: 'Birth-Death Registry', minorProtection: 'Protected under Sec 9' },
     { field: 'Vaccination History', value: 'Up to date (MR, DPT Booster, Polio OPV)', source: 'Vaccination Drive (SYS-012)', minorProtection: 'Protected under Sec 9' },
@@ -218,7 +218,7 @@ var GUARDIAN_DATA = {
 var SAMPLE_DATA = {
 
   organization: {
-    name: "Ahmedabad Municipal Corporation", code: "AMC-GJ-001", type: "Urban Local Body", state: "Gujarat",
+    name: "Bharat Electronics Limited", code: "BEL-GJ-001", type: "Urban Local Body", state: "Gujarat",
     dpoName: "Shri Rajesh M. Patel, IAS", dpoDesignation: "Data Protection Officer", dpoEmail: "dpo@amc.gov.in", dpoPhone: "+91-79-2539-XXXX",
     ciso: "Smt. Kavita R. Shah", tenantAdmin: "Shri Amit J. Desai"
   },
@@ -235,7 +235,7 @@ var SAMPLE_DATA = {
     { id: "SYS-002", name: "GIS-based Property Survey System", department: "DEP-001", type: "GIS Application", vendor: "BISAG-N", dataFields: 8, classification: "PII", status: "mapped", hostingLocation: "BISAG-N High-Security Cluster, Gandhinagar", datacenterTier: "Tier-III", country: "India", meityEmpanelled: true, crossBorderTransfer: "PROHIBITED", encryptionAtRest: "AES-256" },
     { id: "SYS-003", name: "Online Payment Gateway", department: "DEP-001", type: "Payment System", vendor: "SBI ePay", dataFields: 5, classification: "SPII", status: "mapped", hostingLocation: "SBI Secure Data Center, Navi Mumbai", datacenterTier: "Tier-IV", country: "India", meityEmpanelled: true, crossBorderTransfer: "PROHIBITED", encryptionAtRest: "AES-256 (FIPS 140-2)" },
     { id: "SYS-004", name: "Birth-Death Registration System", department: "DEP-002", type: "Web Application", vendor: "NIC", dataFields: 22, classification: "SPII", status: "mapped", hostingLocation: "NIC National Data Center, Shastri Park, New Delhi", datacenterTier: "Tier-III", country: "India", meityEmpanelled: true, crossBorderTransfer: "PROHIBITED", encryptionAtRest: "AES-256 (HSM)" },
-    { id: "SYS-005", name: "Hospital MIS", department: "DEP-002", type: "Internal Application", vendor: "In-house", dataFields: 13, classification: "SPII", status: "pending", hostingLocation: "AMC On-Premises Secure Server Room, Danapith", datacenterTier: "Tier-II", country: "India", meityEmpanelled: true, crossBorderTransfer: "PROHIBITED", encryptionAtRest: "AES-256" },
+    { id: "SYS-005", name: "Hospital MIS", department: "DEP-002", type: "Internal Application", vendor: "In-house", dataFields: 13, classification: "SPII", status: "pending", hostingLocation: "BEL On-Premises Secure Server Room, Danapith", datacenterTier: "Tier-II", country: "India", meityEmpanelled: true, crossBorderTransfer: "PROHIBITED", encryptionAtRest: "AES-256" },
     { id: "SYS-006", name: "Water Connection Management", department: "DEP-003", type: "Web Application", vendor: "Silver Touch Technologies", dataFields: 10, classification: "PII", status: "mapped", hostingLocation: "Gujarat State Data Center (SDC), Gandhinagar", datacenterTier: "Tier-III", country: "India", meityEmpanelled: true, crossBorderTransfer: "PROHIBITED", encryptionAtRest: "AES-256" },
     { id: "SYS-007", name: "SCADA Water Distribution", department: "DEP-003", type: "IoT/SCADA", vendor: "L&T", dataFields: 8, classification: "Non-Personal", status: "mapped", hostingLocation: "Kotarpur Water Works Control Center, Ahmedabad", datacenterTier: "Air-Gapped SCADA", country: "India", meityEmpanelled: true, crossBorderTransfer: "PROHIBITED", encryptionAtRest: "Proprietary PLC" },
     { id: "SYS-008", name: "Building Permission System (DBPS)", department: "DEP-004", type: "Web Application", vendor: "NIC", dataFields: 14, classification: "PII", status: "pending", hostingLocation: "NIC Meghraj Cloud, Pune", datacenterTier: "Tier-III", country: "India", meityEmpanelled: true, crossBorderTransfer: "PROHIBITED", encryptionAtRest: "AES-256" },
@@ -263,21 +263,21 @@ var SAMPLE_DATA = {
     { id: "DF-015", name: "Building Applicant Name", system: "SYS-008", classification: "PII", sensitivity: "Medium", purpose: "Building permission", retention: "Life of building", legalBasis: "Legal Obligation" }
   ],
   consentRecords: [
-    { id: "CON-2026-00145", principalName: "Shri Ramesh K. Patel", principalId: "AMC-CID-890124", purpose: "Property tax assessment & municipal record maintenance", system: "SYS-001", status: "active", grantedAt: "2026-07-15T10:30:00", noticeVersion: "v2.5", language: "Gujarati", channel: "Web Portal", legalGround: "Section 7(b) — State Function", isStatutory: true, statutoryAct: "Gujarat Municipalities Act, 1963 (Section 99)", rule5IntimationId: "INT-2026-001", standardsCompliant: "Second Schedule Standards 1–7" },
-    { id: "CON-2026-00146", principalName: "Smt. Bhavna R. Shah", principalId: "AMC-CID-781290", purpose: "Birth certificate registration & extract issuance", system: "SYS-004", status: "active", grantedAt: "2026-07-16T09:15:00", noticeVersion: "v1.4", language: "Hindi", channel: "Counter", legalGround: "Section 7(b) — State Function", isStatutory: true, statutoryAct: "Registration of Births & Deaths Act, 1969", rule5IntimationId: "INT-2026-002", standardsCompliant: "Second Schedule Standards 1–7" },
-    { id: "CON-2026-00147", principalName: "Shri Vikram S. Mehta", principalId: "AMC-CID-336712", purpose: "Online property tax payment convenience & voluntary SMS", system: "SYS-003", status: "withdrawn", grantedAt: "2026-06-01T14:00:00", withdrawnAt: "2026-08-20T11:45:00", noticeVersion: "v2.0", language: "English", channel: "Web Portal", legalGround: "Section 6 — Consent", isStatutory: false },
-    { id: "CON-2026-00148", principalName: "Smt. Priya N. Joshi", principalId: "AMC-CID-554201", purpose: "Water connection metering & utility billing", system: "SYS-006", status: "active", grantedAt: "2026-07-20T16:30:00", noticeVersion: "v1.2", language: "Gujarati", channel: "Web Portal", legalGround: "Section 7(b) — State Function", isStatutory: true, statutoryAct: "Bombay Provincial Municipal Corporations Act", rule5IntimationId: "INT-2026-003", standardsCompliant: "Second Schedule Standards 1–7" },
-    { id: "CON-2026-00149", principalName: "Shri Kiran B. Trivedi", principalId: "AMC-CID-789123", purpose: "Building scrutiny permit application (GDCR)", system: "SYS-008", status: "active", grantedAt: "2026-08-01T10:00:00", noticeVersion: "v1.0", language: "English", channel: "Web Portal", legalGround: "Section 7(b) — State Function", isStatutory: true, statutoryAct: "General Development Control Regulations (GDCR)" },
-    { id: "CON-2026-00150", principalName: "Smt. Anita D. Rana (Legal Guardian)", principalId: "AMC-CID-224890", childId: "AMC-CHD-991204", purpose: "Vaccination drive (Child Immunization)", system: "SYS-012", status: "active", grantedAt: "2026-08-05T08:30:00", noticeVersion: "v1.2", language: "Hindi", channel: "Mobile App", legalGround: "Section 7(b) — State Function", childProtectionLayer: "Section 9 Child Safeguards (VPC Verified)", isStatutory: true, isMinor: true, childAge: 12, childName: "Master Rohan D. Rana", vpc: { verified: true, method: "DigiLocker Family Linkage", token: "VPC-DL-2026-098842", guardianName: "Smt. Anita D. Rana", guardianCitizenId: "AMC-CID-224890", guardianAadhaarMasked: "XXXX-XXXX-2234", childAge: 12, profilingProhibited: true, targetedAdsProhibited: true, verifiedAt: "2026-08-05T08:28:10Z" } },
-    { id: "CON-2026-00151", principalName: "Shri Deepak M. Parmar", principalId: "AMC-CID-667812", purpose: "Sanitation complaint tracking & app feedback", system: "SYS-010", status: "active", grantedAt: "2026-08-10T12:15:00", noticeVersion: "v1.0", language: "Gujarati", channel: "Mobile App", legalGround: "Section 6 — Consent", isStatutory: false },
-    { id: "CON-2026-00152", principalName: "Smt. Rekha V. Pandya", principalId: "AMC-CID-119045", purpose: "Annual property tax assessment verification", system: "SYS-001", status: "expired", grantedAt: "2025-08-12T09:00:00", noticeVersion: "v1.8", language: "Gujarati", channel: "Counter", legalGround: "Section 7(b) — State Function", isStatutory: true, statutoryAct: "Gujarat Municipalities Act, 1963" },
-    { id: "CON-2026-00153", principalName: "Shri Nilesh H. Bhatt", principalId: "AMC-CID-445690", purpose: "Death certificate legal extract registration", system: "SYS-004", status: "active", grantedAt: "2026-08-18T14:30:00", noticeVersion: "v1.3", language: "Hindi", channel: "Counter", legalGround: "Section 7(b) — State Function", isStatutory: true, statutoryAct: "Registration of Births & Deaths Act, 1969" },
-    { id: "CON-2026-00154", principalName: "Smt. Jaya P. Desai", principalId: "AMC-CID-992314", purpose: "Public health urban epidemic cluster surveillance", system: "SYS-011", status: "active", grantedAt: "2026-08-22T11:00:00", noticeVersion: "v1.0", language: "English", channel: "Hospital Visit", legalGround: "Section 7(e) — Public Health Threat", isStatutory: true, statutoryAct: "Epidemic Diseases Act, 1897" },
-    { id: "CON-2026-00155", principalName: "Shri Arun G. Solanki", principalId: "AMC-CID-771234", purpose: "GIS municipal property boundary survey", system: "SYS-002", status: "active", grantedAt: "2026-08-25T10:45:00", noticeVersion: "v1.1", language: "Gujarati", channel: "Field Visit", legalGround: "Section 7(b) — State Function", isStatutory: true, statutoryAct: "Gujarat Town Planning Act" },
-    { id: "CON-2026-00156", principalName: "Smt. Usha T. Modi", principalId: "AMC-CID-338812", purpose: "Water billing SMS & voluntary alerts", system: "SYS-006", status: "withdrawn", grantedAt: "2026-05-10T09:30:00", withdrawnAt: "2026-08-28T16:00:00", noticeVersion: "v1.0", language: "Hindi", channel: "Web Portal", legalGround: "Section 6 — Consent", isStatutory: false },
-    { id: "CON-2026-00157", principalName: "Shri Prakash J. Vaghela", principalId: "AMC-CID-550189", purpose: "Property tax direct refund electronic credit", system: "SYS-003", status: "active", grantedAt: "2026-08-28T13:20:00", noticeVersion: "v2.1", language: "Gujarati", channel: "Web Portal", legalGround: "Section 6 — Consent", isStatutory: false },
-    { id: "CON-2026-00158", principalName: "Smt. Hetal K. Raval", principalId: "AMC-CID-884512", purpose: "Building permission scrutiny SMS alerts", system: "SYS-008", status: "active", grantedAt: "2026-08-30T15:10:00", noticeVersion: "v1.0", language: "English", channel: "Web Portal", legalGround: "Section 6 — Consent", isStatutory: false },
-    { id: "CON-2026-00159", principalName: "Shri Jayesh R. Chauhan", principalId: "AMC-CID-226745", purpose: "Birth certificate registration extract", system: "SYS-004", status: "active", grantedAt: "2026-09-01T10:00:00", noticeVersion: "v1.3", language: "Gujarati", channel: "Counter", legalGround: "Section 7(b) — State Function", isStatutory: true, statutoryAct: "Registration of Births & Deaths Act, 1969" }
+    { id: "CON-2026-00145", principalName: "Shri Ramesh K. Patel", principalId: "BEL-CID-890124", purpose: "Property tax assessment & municipal record maintenance", system: "SYS-001", status: "active", grantedAt: "2026-07-15T10:30:00", noticeVersion: "v2.5", language: "Gujarati", channel: "Web Portal", legalGround: "Section 7(b) — State Function", isStatutory: true, statutoryAct: "Gujarat Municipalities Act, 1963 (Section 99)", rule5IntimationId: "INT-2026-001", standardsCompliant: "Second Schedule Standards 1–7" },
+    { id: "CON-2026-00146", principalName: "Smt. Bhavna R. Shah", principalId: "BEL-CID-781290", purpose: "Birth certificate registration & extract issuance", system: "SYS-004", status: "active", grantedAt: "2026-07-16T09:15:00", noticeVersion: "v1.4", language: "Hindi", channel: "Counter", legalGround: "Section 7(b) — State Function", isStatutory: true, statutoryAct: "Registration of Births & Deaths Act, 1969", rule5IntimationId: "INT-2026-002", standardsCompliant: "Second Schedule Standards 1–7" },
+    { id: "CON-2026-00147", principalName: "Shri Vikram S. Mehta", principalId: "BEL-CID-336712", purpose: "Online property tax payment convenience & voluntary SMS", system: "SYS-003", status: "withdrawn", grantedAt: "2026-06-01T14:00:00", withdrawnAt: "2026-08-20T11:45:00", noticeVersion: "v2.0", language: "English", channel: "Web Portal", legalGround: "Section 6 — Consent", isStatutory: false },
+    { id: "CON-2026-00148", principalName: "Smt. Priya N. Joshi", principalId: "BEL-CID-554201", purpose: "Water connection metering & utility billing", system: "SYS-006", status: "active", grantedAt: "2026-07-20T16:30:00", noticeVersion: "v1.2", language: "Gujarati", channel: "Web Portal", legalGround: "Section 7(b) — State Function", isStatutory: true, statutoryAct: "Bombay Provincial Municipal Corporations Act", rule5IntimationId: "INT-2026-003", standardsCompliant: "Second Schedule Standards 1–7" },
+    { id: "CON-2026-00149", principalName: "Shri Kiran B. Trivedi", principalId: "BEL-CID-789123", purpose: "Building scrutiny permit application (GDCR)", system: "SYS-008", status: "active", grantedAt: "2026-08-01T10:00:00", noticeVersion: "v1.0", language: "English", channel: "Web Portal", legalGround: "Section 7(b) — State Function", isStatutory: true, statutoryAct: "General Development Control Regulations (GDCR)" },
+    { id: "CON-2026-00150", principalName: "Smt. Anita D. Rana (Legal Guardian)", principalId: "BEL-CID-224890", childId: "BEL-CHD-991204", purpose: "Vaccination drive (Child Immunization)", system: "SYS-012", status: "active", grantedAt: "2026-08-05T08:30:00", noticeVersion: "v1.2", language: "Hindi", channel: "Mobile App", legalGround: "Section 7(b) — State Function", childProtectionLayer: "Section 9 Child Safeguards (VPC Verified)", isStatutory: true, isMinor: true, childAge: 12, childName: "Master Rohan D. Rana", vpc: { verified: true, method: "DigiLocker Family Linkage", token: "VPC-DL-2026-098842", guardianName: "Smt. Anita D. Rana", guardianCitizenId: "BEL-CID-224890", guardianAadhaarMasked: "XXXX-XXXX-2234", childAge: 12, profilingProhibited: true, targetedAdsProhibited: true, verifiedAt: "2026-08-05T08:28:10Z" } },
+    { id: "CON-2026-00151", principalName: "Shri Deepak M. Parmar", principalId: "BEL-CID-667812", purpose: "Sanitation complaint tracking & app feedback", system: "SYS-010", status: "active", grantedAt: "2026-08-10T12:15:00", noticeVersion: "v1.0", language: "Gujarati", channel: "Mobile App", legalGround: "Section 6 — Consent", isStatutory: false },
+    { id: "CON-2026-00152", principalName: "Smt. Rekha V. Pandya", principalId: "BEL-CID-119045", purpose: "Annual property tax assessment verification", system: "SYS-001", status: "expired", grantedAt: "2025-08-12T09:00:00", noticeVersion: "v1.8", language: "Gujarati", channel: "Counter", legalGround: "Section 7(b) — State Function", isStatutory: true, statutoryAct: "Gujarat Municipalities Act, 1963" },
+    { id: "CON-2026-00153", principalName: "Shri Nilesh H. Bhatt", principalId: "BEL-CID-445690", purpose: "Death certificate legal extract registration", system: "SYS-004", status: "active", grantedAt: "2026-08-18T14:30:00", noticeVersion: "v1.3", language: "Hindi", channel: "Counter", legalGround: "Section 7(b) — State Function", isStatutory: true, statutoryAct: "Registration of Births & Deaths Act, 1969" },
+    { id: "CON-2026-00154", principalName: "Smt. Jaya P. Desai", principalId: "BEL-CID-992314", purpose: "Public health urban epidemic cluster surveillance", system: "SYS-011", status: "active", grantedAt: "2026-08-22T11:00:00", noticeVersion: "v1.0", language: "English", channel: "Hospital Visit", legalGround: "Section 7(e) — Public Health Threat", isStatutory: true, statutoryAct: "Epidemic Diseases Act, 1897" },
+    { id: "CON-2026-00155", principalName: "Shri Arun G. Solanki", principalId: "BEL-CID-771234", purpose: "GIS municipal property boundary survey", system: "SYS-002", status: "active", grantedAt: "2026-08-25T10:45:00", noticeVersion: "v1.1", language: "Gujarati", channel: "Field Visit", legalGround: "Section 7(b) — State Function", isStatutory: true, statutoryAct: "Gujarat Town Planning Act" },
+    { id: "CON-2026-00156", principalName: "Smt. Usha T. Modi", principalId: "BEL-CID-338812", purpose: "Water billing SMS & voluntary alerts", system: "SYS-006", status: "withdrawn", grantedAt: "2026-05-10T09:30:00", withdrawnAt: "2026-08-28T16:00:00", noticeVersion: "v1.0", language: "Hindi", channel: "Web Portal", legalGround: "Section 6 — Consent", isStatutory: false },
+    { id: "CON-2026-00157", principalName: "Shri Prakash J. Vaghela", principalId: "BEL-CID-550189", purpose: "Property tax direct refund electronic credit", system: "SYS-003", status: "active", grantedAt: "2026-08-28T13:20:00", noticeVersion: "v2.1", language: "Gujarati", channel: "Web Portal", legalGround: "Section 6 — Consent", isStatutory: false },
+    { id: "CON-2026-00158", principalName: "Smt. Hetal K. Raval", principalId: "BEL-CID-884512", purpose: "Building permission scrutiny SMS alerts", system: "SYS-008", status: "active", grantedAt: "2026-08-30T15:10:00", noticeVersion: "v1.0", language: "English", channel: "Web Portal", legalGround: "Section 6 — Consent", isStatutory: false },
+    { id: "CON-2026-00159", principalName: "Shri Jayesh R. Chauhan", principalId: "BEL-CID-226745", purpose: "Birth certificate registration extract", system: "SYS-004", status: "active", grantedAt: "2026-09-01T10:00:00", noticeVersion: "v1.3", language: "Gujarati", channel: "Counter", legalGround: "Section 7(b) — State Function", isStatutory: true, statutoryAct: "Registration of Births & Deaths Act, 1969" }
   ],
   rightsRequests: [
     { id: "RR-2026-0081", principalName: "Smt. Bhavna R. Shah", type: "Access (Sec 11)", department: "Birth & Death Registration", deptId: "DEP-002", status: "completed", submittedAt: "2026-07-20T09:00:00", slaPublishedTargetDays: 21, slaDeadline: "2026-08-10T09:00:00", completedAt: "2026-07-28T14:30:00", assignedTo: "Shri Anil K. Vyas", description: "Request to access all personal data & recipient disclosures held in Birth-Death System" },
@@ -550,7 +550,7 @@ function generateKantaraConsentReceipt(c) {
     }) : null,
     "piiControllers": [
       {
-        "piiController": "Ahmedabad Municipal Corporation",
+        "piiController": "Bharat Electronics Limited",
         "entityType": "Urban Local Body (State Instrumentality)",
         "onBehalf": false,
         "contact": "Data Protection Officer (IAS)",
@@ -586,7 +586,7 @@ function generateKantaraConsentReceipt(c) {
             "primaryPurpose": true,
             "termination": isSec7 
               ? "Non-withdrawable pursuant to DPDP Act Sec 7(b) (Statutory State Function) while municipal service or ownership is active"
-              : "Withdraw at any time via AMC Citizen Portal as easily as giving consent (Section 6(4))",
+              : "Withdraw at any time via BEL Citizen Portal as easily as giving consent (Section 6(4))",
             "thirdPartyDisclosure": false
           }
         ]
@@ -697,7 +697,7 @@ var INTEGRATION_DATA = {
       legalGround: "Section 6 — Consent",
       isStatutory: false,
       isMinorSupported: false,
-      applicantDefault: "Shri Ramesh K. Patel (AMC-CID-890124)",
+      applicantDefault: "Shri Ramesh K. Patel (BEL-CID-890124)",
       dataFields: [
         { name: "Applicant Name", type: "PII" },
         { name: "Citizen Municipal ID", type: "PII" },
@@ -708,7 +708,7 @@ var INTEGRATION_DATA = {
       notices: {
         gu: "આવક અને સંપત્તિ પ્રમાણપત્ર મેળવવા માટે તમારી વ્યક્તિગત આવક અને બેંક વિગતોની ચકાસણી કરવામાં આવશે. DPDP અધિનિયમ ૨૦૨૩ ની કલમ ૫ હેઠળ આ ડેટા ફક્ત પ્રમાણપત્ર ચકાસણી માટે વાપરવામાં આવશે. તમે કોઈપણ સમયે dpo@amc.gov.in પર સંમતિ પાછી ખેંચી શકો છો.",
         hi: "आय और संपत्ति प्रमाण पत्र जारी करने हेतु आपके आय प्रमाण व बैंक विवरण का सत्यापन किया जाएगा। डीपी़डीपी अधिनियम 2023 की धारा 5 के अंतर्गत यह डेटा केवल प्रमाण पत्र पात्रता सत्यापन हेतु प्रयुक्त होगा। आप किसी भी समय सहमति वापस ले सकते हैं।",
-        en: "Personal income proofs, PAN, and bank details collected solely for verifying eligibility for municipal income certificate under Section 5 & 6 of DPDP Act 2023. You may withdraw consent at any time via AMC Citizen Portal."
+        en: "Personal income proofs, PAN, and bank details collected solely for verifying eligibility for municipal income certificate under Section 5 & 6 of DPDP Act 2023. You may withdraw consent at any time via BEL Citizen Portal."
       }
     },
     {
@@ -721,7 +721,7 @@ var INTEGRATION_DATA = {
       enablingAct: "Registration of Births and Deaths Act, 1969",
       isStatutory: true,
       isMinorSupported: true,
-      applicantDefault: "Smt. Bhavna R. Shah (AMC-CID-781290)",
+      applicantDefault: "Smt. Bhavna R. Shah (BEL-CID-781290)",
       dataFields: [
         { name: "Child Full Name", type: "PII" },
         { name: "Date & Time of Birth", type: "PII" },
@@ -772,10 +772,10 @@ var CITIZEN_I18N = {
   currentLang: 'en',
   translations: {
     en: {
-      brand: "AMC Citizen Portal",
+      brand: "BEL Citizen Portal",
       tagline: "Data Principal Self-Service Portal · DPDP Act 2023",
       welcomeTitle: "Namaste, Shri Ramesh K. Patel",
-      welcomeSub: "Welcome to Ahmedabad Municipal Corporation's Data Principal Self-Service Portal under the Digital Personal Data Protection Act, 2023.",
+      welcomeSub: "Welcome to Bharat Electronics Limited's Data Principal Self-Service Portal under the Digital Personal Data Protection Act, 2023.",
       tabs: {
         overview: "Overview",
         data: "My Personal Data",
@@ -785,7 +785,7 @@ var CITIZEN_I18N = {
       },
       qa: {
         viewData: "View My Data",
-        viewDataDesc: "Inspect all PII held by AMC",
+        viewDataDesc: "Inspect all PII held by BEL",
         manageConsent: "Manage Consent",
         manageConsentDesc: "Opt-in / revoke processing",
         fileRequest: "Submit Rights Request",
@@ -817,7 +817,7 @@ var CITIZEN_I18N = {
       },
       qa: {
         viewData: "મારો અંગત ડેટા જુઓ",
-        viewDataDesc: "AMC પાસે રહેલ બધો ડેટા તપાસો",
+        viewDataDesc: "BEL પાસે રહેલ બધો ડેટા તપાસો",
         manageConsent: "સંમતિ વ્યવસ્થાપન",
         manageConsentDesc: "સંમતિ આપો અથવા પાછી ખેંચો",
         fileRequest: "અધિકાર વિનંતી સબમિટ કરો",
@@ -881,11 +881,11 @@ var STATUTORY_FILINGS = {
       formName: "FORM 1 [CYBER DRILL SPECIMEN] — INTIMATION OF PERSONAL DATA BREACH TO DATA PROTECTION BOARD OF INDIA",
       statutoryProvision: "Section 8(6) of DPDP Act, 2023 read with Rule 7 of DPDP Rules (Drill Simulation)",
       dateOfFiling: "2026-09-02T10:00:00+05:30",
-      fiduciaryName: "Ahmedabad Municipal Corporation (Urban Local Body Data Fiduciary)",
-      registrationNumber: "ULB/GJ/AMC/2026/001 (SDF Notification Pending)",
+      fiduciaryName: "Bharat Electronics Limited (Urban Local Body Data Fiduciary)",
+      registrationNumber: "ULB/GJ/BEL/2026/001 (SDF Notification Pending)",
       registeredOffice: "Mahanagar Seva Sadan, Danapith, Ahmedabad - 380001, Gujarat, India",
       dpoDetails: {
-        name: "Office of the Data Protection Officer, AMC",
+        name: "Office of the Data Protection Officer, BEL",
         designation: "Municipal Data Protection & Compliance Office (Simulation Persona)",
         email: "dpo@amc.gov.in",
         phone: "+91-79-2539-1811"
@@ -913,7 +913,7 @@ var STATUTORY_FILINGS = {
         "Database encryption at rest verified intact (AES-256 HSM).",
         "Statutory initial intimation dispatched to CERT-In within 5h 45m."
       ],
-      principalCommunicationPlan: "[DRILL SPECIMEN] SMS & registered email intimations prepared for 12,000 registered parents with guidance on vigilant monitoring and AMC toll-free helpline (155304).",
+      principalCommunicationPlan: "[DRILL SPECIMEN] SMS & registered email intimations prepared for 12,000 registered parents with guidance on vigilant monitoring and BEL toll-free helpline (155304).",
       statutorySignature: "[DRAFT / TABLETOP DRILL SPECIMEN ONLY — PENDING FORMAL INSTITUTIONAL REVIEW]"
     },
     certInNotice: {

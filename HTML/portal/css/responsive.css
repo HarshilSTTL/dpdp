@@ -47,3 +47,13 @@
   .stats-grid { grid-template-columns: 1fr; }
   .role-switcher { display: none; }
 }
+
+/* Logo text "BEL" is wider than the former single letter */
+.sidebar-brand .brand-icon, .ct-brand-icon { font-size: 13px; letter-spacing: -.3px; }
+.login-header .login-brand-icon { font-size: 17px; width: 64px; }
+
+/* BEL logo image chips (logo is wide, so chips are white and auto-width) */
+.bel-logo-chip { background: #fff !important; width: auto !important; height: 40px !important; padding: 4px 8px; border-radius: 8px; }
+.bel-logo-chip img { height: 100%; width: auto; display: block; }
+.login-header .login-brand-icon.bel-logo-chip { height: 56px !important; padding: 6px 12px; }
+.sidebar-brand .brand-icon.bel-logo-chip { height: 32px !important; padding: 3px 6px; }
