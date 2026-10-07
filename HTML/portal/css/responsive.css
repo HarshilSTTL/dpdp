@@ -57,3 +57,15 @@
 .bel-logo-chip img { height: 100%; width: auto; display: block; }
 .login-header .login-brand-icon.bel-logo-chip { height: 56px !important; padding: 6px 12px; }
 .sidebar-brand .brand-icon.bel-logo-chip { height: 32px !important; padding: 3px 6px; }
+
+/* Fix: elements marked .hidden (e.g. the citizen top bar) must never render */
+.citizen-topbar.hidden, .dept-banner.hidden, .hidden { display: none !important; }
+
+/* Breach page & general: allow badge rows and card headers to wrap instead of clipping */
+.flex.gap-12, .flex.gap-8, .flex.gap-16 { flex-wrap: wrap; }
+.badge { white-space: normal; text-align: left; }
+.card-header { flex-wrap: wrap; gap: 8px; }
+.card-header h3 { min-width: 0; overflow-wrap: anywhere; }
+.table-container { overflow-x: auto; }
+.stats-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+.role-switcher-btn { white-space: nowrap; }

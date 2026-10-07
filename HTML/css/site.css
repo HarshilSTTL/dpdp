@@ -104,7 +104,7 @@ main { flex: 1; }
 .seg button { font: inherit; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 5px; border: 0; background: transparent; color: #334155; cursor: pointer; }
 .seg button:hover { background: #e2e8f0; }
 .seg button.active { background: var(--c-primary); color: #fff; box-shadow: var(--shadow-sm); }
-@media (max-width: 900px) { .hide-md { display: none !important; } }
+@media (max-width: 1100px) { .hide-md { display: none !important; } }
 
 /* ---------- Role-page dark header ---------- */
 .app-header { background: var(--c-dark); border-bottom: 1px solid var(--c-dark-2); color: #fff; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; position: sticky; top: 0; z-index: 50; }
