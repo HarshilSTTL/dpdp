@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DPDP-GovShield — Multi-Role Compliance Suite</title>
+  <base href="/portal/">
+  <link rel="stylesheet" href="/portal/css/styles.css?v=2.3.0">
+  <link rel="stylesheet" href="/portal/css/responsive.css">
+  <script src="/assets/chart.umd.min.js"></script>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════
+     ROLE SELECTION LOGIN OVERLAY (Hidden by default)
+     ══════════════════════════════════════════════════════════ -->
+<div class="login-overlay hidden" id="loginOverlay">
+  <div class="login-container">
+    <div class="login-header">
+      <div class="login-brand">
+        <div class="login-brand-icon">G</div>
+        <div class="login-brand-name">DPDP-GovShield</div>
+      </div>
+      <div class="login-sub">Select an Actor Role to Login & Experience Custom Role-Based Perspectives</div>
+      <div class="login-org">Organization: Ahmedabad Municipal Corporation (ULB)</div>
+    </div>
+    
+    <div id="roleGridContainer"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     READ-ONLY & DEPT BANNERS
+     ══════════════════════════════════════════════════════════ -->
+<div class="readonly-banner hidden" id="readOnlyBanner">
+  <span>👁️ <strong>READ-ONLY AUDIT MODE</strong> — Logged in as <span id="readOnlyRoleName">Auditor</span>. Action buttons and mutations are disabled.</span>
+</div>
+
+<div class="dept-banner hidden" id="deptBanner">
+  <span>🏢 <strong>DEPARTMENTAL SCOPED VIEW</strong> — Filtered for <span id="deptBannerName">Property Tax Department</span></span>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     CITIZEN PORTAL TOPBAR
+     ══════════════════════════════════════════════════════════ -->
+<div class="citizen-topbar hidden" id="citizenTopbar">
+  <div class="ct-brand">
+    <div class="ct-brand-icon">G</div>
+    <span class="ct-brand-name" id="citizenBrandName">Citizen Data Portal — AMC</span>
+  </div>
+  <div class="ct-nav" id="citizenNav">
+    <a class="ct-nav-item active" id="ctNavOverview" onclick="switchCitizenTab('overview')">My Overview</a>
+    <a class="ct-nav-item" id="ctNavData" onclick="switchCitizenTab('data')">My Personal Data</a>
+    <a class="ct-nav-item" id="ctNavConsents" onclick="switchCitizenTab('consents')">Consent Preferences</a>
+    <a class="ct-nav-item" id="ctNavRequests" onclick="switchCitizenTab('requests')">Rights & Requests</a>
+    <a class="ct-nav-item" id="ctNavNominee" onclick="switchCitizenTab('nominee')">Nominee (Sec 14)</a>
+    <a class="ct-nav-item" id="ctNavRecipients" onclick="switchCitizenTab('recipients')">Data Sharing (Sec 11(1)(b))</a>
+  </div>
+  <div class="ct-user flex items-center gap-8">
+    <div class="gigw-controls" title="GIGW 3.0 / WCAG Accessibility Controls">
+      <button class="gigw-btn" onclick="adjustFontSize(-1)" title="Decrease font size">A-</button>
+      <button class="gigw-btn" onclick="adjustFontSize(0)" title="Default font size">A</button>
+      <button class="gigw-btn" onclick="adjustFontSize(1)" title="Increase font size">A+</button>
+      <button class="gigw-btn" onclick="toggleHighContrast()" title="Toggle High Contrast">🌓</button>
+    </div>
+    <div class="citizen-lang-toggle" style="display:flex;gap:3px;background:rgba(255,255,255,0.12);padding:2px 6px;border-radius:6px;">
+      <button class="lang-btn active" id="langBtnEn" onclick="setCitizenLanguage('en')">EN</button>
+      <button class="lang-btn" id="langBtnGu" onclick="setCitizenLanguage('gu')">ગુજરાતી</button>
+      <button class="lang-btn" id="langBtnHi" onclick="setCitizenLanguage('hi')">हिन्दी</button>
+    </div>
+    <span id="citizenUserName">Shri Ramesh K. Patel</span>
+    <a href="/" class="btn btn-secondary btn-sm" style="text-decoration:none;display:inline-flex;align-items:center;gap:4px;">🏠 Citizen Landing</a>
+    <button class="btn btn-secondary btn-sm" onclick="showLoginScreen()">Switch Role 🔄</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     ADMIN & STAFF SIDEBAR
+     ══════════════════════════════════════════════════════════ -->
+<nav class="sidebar" id="mainSidebar">
+  <div class="sidebar-brand">
+    <div class="brand-icon">G</div>
+    <div class="brand-text">
+      <span class="brand-name">GovShield</span>
+      <span class="brand-sub">DPDP Compliance</span>
+    </div>
+  </div>
+
+  <div class="sidebar-nav" id="sidebarNav">
+    <!-- Populated dynamically based on role permissions -->
+  </div>
+
+  <div class="sidebar-footer">
+    DPDP Act, 2023 · Rules, 2025<br>
+    v1.0.0-beta · © 2026
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════════
+     HEADER
+     ══════════════════════════════════════════════════════════ -->
+<header class="header" id="mainHeader">
+  <div class="header-left">
+    <div>
+      <h1 id="pageTitle">DPO Dashboard</h1>
+      <div class="breadcrumb" id="pageBreadcrumb">Ahmedabad Municipal Corporation</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <!-- Role Switcher Dropdown -->
+    <div class="role-switcher">
+      <button class="role-switcher-btn" onclick="toggleRoleDropdown()">
+        <span class="rs-dot" id="rsDot" style="background:#1a3a6b"></span>
+        <span id="rsRoleLabel">Data Protection Officer</span>
+        <span>▼</span>
+      </button>
+      <div class="role-switcher-dropdown" id="roleDropdown"></div>
+    </div>
+
+    <a href="/" class="btn btn-secondary btn-sm" style="text-decoration:none;display:inline-flex;align-items:center;gap:4px;">🏠 Citizen Landing</a>
+
+    <button class="header-btn" title="Notifications" onclick="showNotifications()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+      <span class="notif-dot"></span>
+    </button>
+    
+    <div class="user-info" onclick="showLoginScreen()" title="Click to switch role / user" style="cursor:pointer">
+      <div>
+        <div class="user-name" id="headerUserName">Shri Rajesh M. Patel</div>
+        <div class="user-role" id="headerUserRole">Data Protection Officer</div>
+      </div>
+      <div class="user-avatar" id="headerUserAvatar">RP</div>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════════════════════════════
+     MAIN CONTENT
+     ══════════════════════════════════════════════════════════ -->
+<main class="main-content" id="mainContent">
+
+  <!-- ═══ DASHBOARD PAGE ═══ -->
+  <section id="page-dashboard" class="page-section active">
+    <!-- Executive Fiduciary Governance Bar (Section 10(1) Agnostic) -->
+    <div class="flex justify-between items-center mb-3" style="background:#fff;padding:12px 18px;border-radius:var(--radius-md);border:1px solid var(--gray-200);box-shadow:var(--shadow-sm);">
+      <div>
+        <div class="flex items-center gap-8">
+          <strong style="font-size:14px;color:#1a3a6b;">🏛️ Fiduciary Designation:</strong>
+          <span class="badge badge-statutory" id="sdfStatusBadge" style="font-size:12px;">Standard Urban Local Body Data Fiduciary</span>
+        </div>
+        <div class="text-xs text-muted" id="sdfStatusSubText" style="margin-top:2px;">
+          Statutory Duties: Sections 5–9, 11–16 active. Section 10 & Rule 13 SDF duties pending Central Government Gazette notification under Sec 10(1).
+        </div>
+      </div>
+      <div class="flex items-center gap-8">
+        <button class="btn btn-secondary btn-sm" id="btnToggleSdf" onclick="toggleSDFStatus()" style="font-weight:700;border-color:#ff9800;color:#e65100;">
+          🔄 Simulate Notified SDF (Sec 10)
+        </button>
+      </div>
+    </div>
+
+    <div id="dashboardAlerts"></div>
+    <div id="penaltyExposureWidget"></div>
+    <div class="stats-grid" id="dashboardStats"></div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-header"><h3>Consent Trend (Last 6 Months)</h3></div>
+        <div class="card-body"><div class="chart-container"><canvas id="chartConsentTrend"></canvas></div></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><h3>Rights Requests by Type</h3></div>
+        <div class="card-body"><div class="chart-container"><canvas id="chartRightsType"></canvas></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <h3>Recent Activity Log</h3>
+        <button class="btn btn-secondary btn-sm">View All</button>
+      </div>
+      <div class="card-body">
+        <div class="activity-feed" id="activityFeed"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CONSENT PAGE ═══ -->
+  <section id="page-consent" class="page-section">
+    <div class="sub-nav">
+      <button class="sub-nav-btn active" id="btnTabConsentRecords" onclick="switchConsentTab('records')">📋 Consent & Statutory Records</button>
+      <button class="sub-nav-btn" id="btnTabConsentManager" onclick="switchConsentTab('cm')">🌐 Registered Consent Managers (Sec 6(7))</button>
+    </div>
+
+    <div id="consentRecordsView">
+      <div class="stats-grid" id="consentStats"></div>
+      <div class="grid-2 mb-3">
+        <div class="card">
+          <div class="card-header"><h3>Processing Grounds Breakdown (Sec 6 vs 7)</h3></div>
+          <div class="card-body"><div class="chart-container"><canvas id="chartConsentPurpose"></canvas></div></div>
+        </div>
+        <div class="card-header-card card">
+          <div class="card-header"><h3>Consent by Capture Channel</h3></div>
+          <div class="card-body"><div class="chart-container"><canvas id="chartConsentChannel"></canvas></div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h3 style="margin-bottom:2px;">Consent & Statutory Ground Register</h3>
+            <span class="text-xs text-muted">DPDP Act Sections 5, 6, 7(b), and Section 9 (VPC Minor Shield)</span>
+          </div>
+          <div class="flex gap-8">
+            <button class="btn btn-secondary btn-sm" onclick="showVPCOverviewModal()">🛡️ VPC Minor Shield</button>
+            <button class="btn btn-primary btn-sm action-btn" onclick="showConsentForm()">+ Capture Consent</button>
+          </div>
+        </div>
+        <div class="filter-bar">
+          <input type="text" class="search-input" placeholder="Search by name, ID, or purpose..." id="consentSearch" oninput="filterConsent()">
+          <select class="filter-select" id="consentGroundFilter" onchange="filterConsent()">
+            <option value="">All Legal Grounds</option>
+            <option value="consent">Sec 6 (Voluntary Consent)</option>
+            <option value="state">Sec 7(b) (State Function)</option>
+            <option value="minor">Sec 9 (VPC Minor)</option>
+          </select>
+          <select class="filter-select" id="consentStatusFilter" onchange="filterConsent()">
+            <option value="">All Statuses</option>
+            <option value="active">Active</option>
+            <option value="withdrawn">Withdrawn</option>
+            <option value="expired">Expired</option>
+          </select>
+          <select class="filter-select" id="consentLangFilter" onchange="filterConsent()">
+            <option value="">All Languages</option>
+            <option value="English">English</option>
+            <option value="Hindi">Hindi</option>
+            <option value="Gujarati">Gujarati</option>
+          </select>
+        </div>
+        <div class="table-container">
+          <table class="data-table" id="consentTable">
+            <thead>
+              <tr>
+                <th>Consent ID</th>
+                <th>Data Principal</th>
+                <th>Legal Ground</th>
+                <th>Specified Purpose</th>
+                <th>Status</th>
+                <th>Granted</th>
+                <th>Receipt & Actions</th>
+              </tr>
+            </thead>
+            <tbody id="consentTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Registered Consent Managers View -->
+    <div id="consentManagerView" style="display:none;">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h3>DPBI-Registered Consent Managers (Section 6(7) & Draft Rules)</h3>
+            <span class="text-xs text-muted">Interoperable consent management platforms registered with the Data Protection Board of India</span>
+          </div>
+          <div class="flex gap-8">
+            <button class="btn btn-secondary btn-sm" onclick="testConsentManagerPing()">⚡ Test Heartbeat & Latency</button>
+            <button class="btn btn-primary btn-sm action-btn" onclick="showConnectConsentManagerModal()">+ Register CM Connector</button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="alert-banner info mb-3">
+            <span class="alert-icon">🌐</span>
+            <div><strong>MeitY / DPBI Consent Bridge Protocol Active:</strong> Inbound and outbound consent artifacts are exchanged via mTLS 1.3 with cryptographic timestamping. Citizens managing consent on external registered Consent Managers automatically sync with AMC local repositories.</div>
+          </div>
+          <div class="cm-grid" id="cmGridContainer"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ RIGHTS PAGE ═══ -->
+  <section id="page-rights" class="page-section">
+    <div class="stats-grid" id="rightsStats"></div>
+    <div class="card">
+      <div class="card-header">
+        <h3>Data Principal Rights Requests</h3>
+        <div class="flex gap-12">
+          <button class="btn btn-secondary btn-sm" onclick="exportRightsCSV()">⬇ Export CSV</button>
+          <button class="btn btn-primary btn-sm action-btn" onclick="showNewRightsForm()">+ New Request</button>
+        </div>
+      </div>
+      <div class="filter-bar">
+        <input type="text" class="search-input" placeholder="Search by name, ID, or department..." id="rightsSearch" oninput="filterRights()">
+        <select class="filter-select" id="rightsTypeFilter" onchange="filterRights()">
+          <option value="">All Types</option>
+          <option value="Access">Access</option>
+          <option value="Correction">Correction</option>
+          <option value="Erasure">Erasure</option>
+          <option value="Grievance">Grievance</option>
+          <option value="Nomination">Nomination</option>
+          <option value="Consent Withdrawal">Consent Withdrawal</option>
+        </select>
+        <select class="filter-select" id="rightsStatusFilter" onchange="filterRights()">
+          <option value="">All Statuses</option>
+          <option value="pending">Pending</option>
+          <option value="in-progress">In Progress</option>
+          <option value="completed">Completed</option>
+          <option value="on-hold">On Hold</option>
+          <option value="escalated">Escalated</option>
+        </select>
+      </div>
+      <div class="table-container">
+        <table class="data-table" id="rightsTable">
+          <thead>
+            <tr>
+              <th>Request ID</th>
+              <th>Data Principal</th>
+              <th>Type</th>
+              <th>Department</th>
+              <th>Status</th>
+              <th>SLA Deadline</th>
+              <th>Assigned To</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="rightsTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ BREACH PAGE ═══ -->
+  <section id="page-breach" class="page-section">
+    <div id="breachAlerts"></div>
+    <div class="stats-grid" id="breachStats"></div>
+    <div id="activeBreachSection"></div>
+    <div class="card">
+      <div class="card-header flex-between">
+        <h3>All Breach Incidents</h3>
+        <div class="flex gap-8">
+          <button class="btn btn-secondary btn-sm" onclick="showStatutoryFilingModal('BRI-2026-003')">📄 Official DPBI Form 1 & CERT-In Notice</button>
+          <button class="btn btn-danger btn-sm action-btn" onclick="showNewIncidentForm()">⚠ Report Incident</button>
+        </div>
+      </div>
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Incident ID</th>
+              <th>Title</th>
+              <th>Severity</th>
+              <th>Status</th>
+              <th>Detected</th>
+              <th>Affected Principals</th>
+              <th>CERT-In</th>
+              <th>DPB</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="breachTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ INVENTORY PAGE ═══ -->
+  <section id="page-inventory" class="page-section">
+    <!-- Sub-navigation tabs -->
+    <div class="sub-nav">
+      <button class="sub-nav-btn active" id="btnTabRopa" onclick="switchInventoryTab('ropa')">📋 Systems & Processing Inventory (Sec 8)</button>
+      <button class="sub-nav-btn" id="btnTabResidency" onclick="switchInventoryTab('residency')">🇮🇳 Sovereign Cloud Residency (Sec 16 & State Policy)</button>
+      <button class="sub-nav-btn" id="btnTabProcessors" onclick="switchInventoryTab('processors')">🏢 Data Processors & DPA Register (Sec 8(2))</button>
+      <button class="sub-nav-btn" id="btnTabSharing" onclick="switchInventoryTab('sharing')">🤝 Data Sharing & Recipients (Sec 11(1)(b))</button>
+    </div>
+
+    <!-- Tab 1: RoPA -->
+    <div id="inventoryTabRopa">
+      <div class="stats-grid" id="inventoryStats"></div>
+      <div class="grid-2 mb-3">
+        <div class="card">
+          <div class="card-header"><h3>Data Classification Breakdown</h3></div>
+          <div class="card-body"><div class="chart-container"><canvas id="chartClassification"></canvas></div></div>
+        </div>
+        <div class="card-header"><h3>Systems by Department</h3></div>
+        <div class="card-body"><div class="chart-container"><canvas id="chartSysByDept"></canvas></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <h3>Registered Systems</h3>
+        <button class="btn btn-primary btn-sm action-btn" onclick="showRegisterSystemModal()">+ Register System</button>
+      </div>
+      <div class="filter-bar">
+        <input type="text" class="search-input" placeholder="Search systems..." id="systemSearch" oninput="filterSystems()">
+        <select class="filter-select" id="systemDeptFilter" onchange="filterSystems()">
+          <option value="">All Departments</option>
+        </select>
+        <select class="filter-select" id="systemClassFilter" onchange="filterSystems()">
+          <option value="">All Classifications</option>
+          <option value="SPII">SPII</option>
+          <option value="PII">PII</option>
+          <option value="Non-Personal">Non-Personal</option>
+        </select>
+      </div>
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>System ID</th>
+              <th>System Name</th>
+              <th>Department</th>
+              <th>Type</th>
+              <th>Vendor</th>
+              <th>Data Fields</th>
+              <th>Classification</th>
+              <th>Mapping Status</th>
+            </tr>
+          </thead>
+          <tbody id="systemTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <h3>Personal Data Fields</h3>
+        <button class="btn btn-saffron btn-sm action-btn" onclick="generateRoPAPrompt()">📄 Generate RoPA</button>
+      </div>
+      <div class="filter-bar">
+        <input type="text" class="search-input" placeholder="Search fields..." id="fieldSearch" oninput="filterFields()">
+        <select class="filter-select" id="fieldSensFilter" onchange="filterFields()">
+          <option value="">All Sensitivities</option>
+          <option value="Critical">Critical</option>
+          <option value="High">High</option>
+          <option value="Medium">Medium</option>
+          <option value="Low">Low</option>
+        </select>
+      </div>
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Field ID</th>
+              <th>Field Name</th>
+              <th>System</th>
+              <th>Classification</th>
+              <th>Sensitivity</th>
+              <th>Purpose</th>
+              <th>Legal Basis</th>
+              <th>Retention</th>
+            </tr>
+          </thead>
+          <tbody id="fieldTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+    </div> <!-- /inventoryTabRopa -->
+
+    <!-- Tab 2: Sovereign Cloud Data Residency (Section 16) -->
+    <div id="inventoryTabResidency" style="display:none;">
+      <div class="stats-grid mb-3">
+        <div class="stat-card accent-green">
+          <div class="stat-header"><span class="stat-label">In-Country Sovereign Residency</span></div>
+          <div class="stat-value">100%</div>
+          <div class="stat-sub">13 / 13 Systems Hosted in India</div>
+        </div>
+        <div class="stat-card accent-blue">
+          <div class="stat-header"><span class="stat-label">Cross-Border Foreign Egress</span></div>
+          <div class="stat-value" style="color:var(--green-600)">0 Transfers</div>
+          <div class="stat-sub">Section 16 Restrictive List Shield</div>
+        </div>
+        <div class="stat-card accent-purple">
+          <div class="stat-header"><span class="stat-label">MeitY-Empanelled Cloud / SDC</span></div>
+          <div class="stat-value">100%</div>
+          <div class="stat-sub">Gujarat SDC, NIC Meghraj & SBI DC</div>
+        </div>
+        <div class="stat-card accent-saffron">
+          <div class="stat-header"><span class="stat-label">Encryption at Rest</span></div>
+          <div class="stat-value">AES-256</div>
+          <div class="stat-sub">FIPS 140-2 Level 3 HSM Hardware</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header flex-between">
+          <div>
+            <h3>Sovereign Cloud Data Residency & Cross-Border Transfer Ledger</h3>
+            <span class="text-xs text-muted">DPDP Act Section 16 & Gujarat State IT Policy Compliance — All municipal data physically localized within Republic of India</span>
+          </div>
+          <button class="btn btn-secondary btn-sm" onclick="alert('Exporting Sovereign Cloud Data Residency Certificate for AMC (Audit Ref: SDC-GJ-2026-092)...');">⬇ Export Residency Certificate</button>
+        </div>
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>System / Consumer</th>
+                <th>Physical Datacenter Location</th>
+                <th>Facility Tier</th>
+                <th>MeitY Empanelment</th>
+                <th>Cross-Border Egress Status</th>
+                <th>At-Rest Encryption</th>
+                <th>Sovereign Compliance</th>
+              </tr>
+            </thead>
+            <tbody id="residencyTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 3: Data Processors & DPA Register -->
+    <div id="inventoryTabProcessors" class="hidden">
+      <div class="card mb-3">
+        <div class="card-header flex-between">
+          <div>
+            <h3>Data Processors & Sub-Processors Governance Register</h3>
+            <span class="text-xs text-muted">Statutory Liability under Section 8(2) & Rule 8: Fiduciary remains accountable for all processor security lapses</span>
+          </div>
+          <span class="badge badge-statutory">100% Executed DPAs</span>
+        </div>
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Processor ID</th>
+                <th>Processor Entity</th>
+                <th>Systems Managed</th>
+                <th>DPA Execution & Validity</th>
+                <th>Certifications</th>
+                <th>Sub-Processors</th>
+                <th>Technical POC</th>
+              </tr>
+            </thead>
+            <tbody id="processorsTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 4: Data Sharing & Recipient Register -->
+    <div id="inventoryTabSharing" class="hidden">
+      <div class="card mb-3">
+        <div class="card-header flex-between">
+          <div>
+            <h3>Third-Party Data Sharing & Recipient Disclosures (Section 11(1)(b))</h3>
+            <span class="text-xs text-muted">Statutory Disclosure of other Data Fiduciaries & Government Authorities with whom personal data is shared</span>
+          </div>
+          <span class="badge badge-info">3 Disclosed Channels</span>
+        </div>
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Sharing ID</th>
+                <th>Recipient Entity</th>
+                <th>Category of Entity</th>
+                <th>Data Attributes Shared</th>
+                <th>Legal Processing Ground</th>
+                <th>Purpose of Sharing</th>
+                <th>Transfer Protocol</th>
+              </tr>
+            </thead>
+            <tbody id="sharingTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ GRIEVANCE PAGE ═══ -->
+  <section id="page-grievance" class="page-section">
+    <div class="stats-grid" id="grievanceStats"></div>
+    <div class="grid-2 mb-3">
+      <div class="card">
+        <div class="card-header"><h3>Grievances by Category</h3></div>
+        <div class="card-body"><div class="chart-container"><canvas id="chartGrievanceCategory"></canvas></div></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><h3>Escalation Level Distribution</h3></div>
+        <div class="card-body"><div class="chart-container"><canvas id="chartEscalation"></canvas></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <h3>Grievance Tickets</h3>
+        <button class="btn btn-primary btn-sm action-btn" onclick="showLogGrievanceModal()">+ Log Grievance</button>
+      </div>
+      <div class="filter-bar">
+        <input type="text" class="search-input" placeholder="Search grievances..." id="grievanceSearch" oninput="filterGrievances()">
+        <select class="filter-select" id="grievanceStatusFilter" onchange="filterGrievances()">
+          <option value="">All Statuses</option>
+          <option value="pending">Pending</option>
+          <option value="in-progress">In Progress</option>
+          <option value="escalated">Escalated</option>
+          <option value="resolved">Resolved</option>
+        </select>
+      </div>
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Ticket ID</th>
+              <th>Data Principal</th>
+              <th>Subject</th>
+              <th>Category</th>
+              <th>Department</th>
+              <th>Status</th>
+              <th>Escalation</th>
+              <th>SLA Deadline</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="grievanceTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ DPIA PAGE ═══ -->
+  <section id="page-dpia" class="page-section">
+    <div class="stats-grid" id="dpiaStats"></div>
+    <div class="card">
+      <div class="card-header">
+        <h3>Data Protection Impact Assessments</h3>
+        <button class="btn btn-primary btn-sm action-btn" onclick="showInitiateDPIAModal()">+ Initiate DPIA</button>
+      </div>
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>DPIA ID</th>
+              <th>Title</th>
+              <th>System</th>
+              <th>Status</th>
+              <th>Risk Level</th>
+              <th>Risks / Mitigations</th>
+              <th>Initiated</th>
+              <th>Next Review</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="dpiaTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card mt-3">
+      <div class="card-header">
+        <h3>Algorithmic Due Diligence (Sec 10)</h3>
+        <span class="badge badge-info">SDF Obligation</span>
+      </div>
+      <div class="card-body" id="algoSection"></div>
+    </div>
+  </section>
+
+  <!-- ═══ RETENTION PAGE ═══ -->
+  <section id="page-retention" class="page-section">
+    <div class="stats-grid" id="retentionStats"></div>
+    <div class="card">
+      <div class="card-header">
+        <h3>Retention Policies</h3>
+        <button class="btn btn-primary btn-sm action-btn" onclick="showAddRetentionPolicyModal()">+ Add Policy</button>
+      </div>
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Policy ID</th>
+              <th>Data Category</th>
+              <th>Department</th>
+              <th>Retention Period</th>
+              <th>Legal Basis</th>
+              <th>Post-Expiry Action</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="retentionTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card mt-3">
+      <div class="card-header">
+        <h3>Upcoming Scheduled Erasures</h3>
+        <button class="btn btn-secondary btn-sm action-btn" onclick="runDryRetentionScan()">Run Dry Scan</button>
+      </div>
+      <div class="card-body" id="upcomingErasures"></div>
+    </div>
+  </section>
+
+  <!-- ═══ ADMIN PAGE ═══ -->
+  <section id="page-admin" class="page-section">
+    <div class="stats-grid" id="adminStats"></div>
+    
+    <div class="card mb-3">
+      <div class="card-header">
+        <h3>User Provisioning & Role Assignments</h3>
+        <button class="btn btn-primary btn-sm action-btn" onclick="showAddUserModal()">+ Add User</button>
+      </div>
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>User ID</th>
+              <th>Name</th>
+              <th>Assigned Role</th>
+              <th>MFA</th>
+              <th>Last Login</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="adminUsersTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="grid-2 mb-3">
+      <div class="card">
+        <div class="card-header"><h3>System Health & Infrastructure</h3></div>
+        <div class="card-body" id="systemHealthBody"></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><h3>Encryption & Key Security</h3></div>
+        <div class="card-body" id="encryptionStatusBody"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h3>Platform Audit Logs (Immutable)</h3>
+        <button class="btn btn-secondary btn-sm">Export Audit Log</button>
+      </div>
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Timestamp</th>
+              <th>User</th>
+              <th>Action Executed</th>
+              <th>Module</th>
+              <th>IP Address</th>
+            </tr>
+          </thead>
+          <tbody id="adminAuditTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ INTEGRATION HUB PAGE ═══ -->
+  <section id="page-integration" class="page-section">
+    <div class="card mb-3">
+      <div class="card-header flex-between">
+        <div>
+          <h3>Municipal Systems Integration Hub & Privacy-as-a-Service (PaaS)</h3>
+          <span class="text-xs text-muted">Standardized REST APIs, Webhooks, and SDKs for external municipal portals (e-Nagarpalika, e-Services, Certificates)</span>
+        </div>
+        <div class="flex gap-8">
+          <button class="btn btn-secondary btn-sm" onclick="showGenerateApiKeyModal()">+ Generate API Key</button>
+          <button class="btn btn-primary btn-sm" onclick="showRegisterWebhookModal()">+ Register Webhook</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sub-navigation tabs -->
+    <div class="sub-nav">
+      <button class="sub-nav-btn active" id="btnTabSim" onclick="switchIntegrationTab('simulator')">🧪 Interactive Certification Simulator</button>
+      <button class="sub-nav-btn" id="btnTabApi" onclick="switchIntegrationTab('api')">📖 API Endpoints & Code Snippets</button>
+      <button class="sub-nav-btn" id="btnTabKeys" onclick="switchIntegrationTab('keys')">🔑 API Keys & System Credentials</button>
+      <button class="sub-nav-btn" id="btnTabWebhooks" onclick="switchIntegrationTab('webhooks')">🔔 Outbound Webhook Subscriptions</button>
+      <button class="sub-nav-btn" id="btnTabSdk" onclick="switchIntegrationTab('sdk')">📦 Drop-In Web Component SDK</button>
+    </div>
+
+    <!-- 1. Interactive Simulator -->
+    <div id="integrationTabSimulator">
+      <div class="card mb-3">
+        <div class="card-header flex-between">
+          <div>
+            <h3>Live Handshake Simulator: Citizen Certification Portal ⇄ DPDP-GovShield</h3>
+            <span class="text-xs text-muted">Simulate an external citizen portal integrating DPDP compliance in real time</span>
+          </div>
+          <div class="flex gap-8 items-center">
+            <label style="font-size:12px;font-weight:600;color:var(--gray-600)">Certificate Service:</label>
+            <select class="filter-select" id="simServiceSelect" onchange="loadSimService()">
+              <option value="CERT-INCOME">Income & Assets Certificate (Sec 6 Consent)</option>
+              <option value="CERT-BIRTH">Birth Certificate Extract (Sec 7(b) Sovereign State Function)</option>
+              <option value="CERT-MINOR-SCHOLARSHIP">Minor Merit Scholarship Certificate (Sec 9 Minor VPC)</option>
+            </select>
+            <label style="font-size:12px;font-weight:600;color:var(--gray-600);margin-left:8px;">Language:</label>
+            <select class="filter-select" id="simLangSelect" onchange="updateSimLanguage()">
+              <option value="gu">Gujarati (ગુજરાતી)</option>
+              <option value="hi">Hindi (हिन्दी)</option>
+              <option value="en">English</option>
+            </select>
+          </div>
+        </div>
+        <div class="card-body">
+          <!-- Stepper -->
+          <div class="sim-stepper">
+            <div class="sim-step active" id="simStep1" onclick="jumpToSimStep(1)">
+              <div class="sim-step-circle">1</div>
+              <div class="sim-step-title">1. Fetch Sec 5 Notice</div>
+              <div class="sim-step-desc">Multilingual Notice API</div>
+            </div>
+            <div class="sim-step" id="simStep2" onclick="jumpToSimStep(2)">
+              <div class="sim-step-circle">2</div>
+              <div class="sim-step-title">2. Ground Evaluation</div>
+              <div class="sim-step-desc">Sec 6 Consent vs Sec 7(b)</div>
+            </div>
+            <div class="sim-step" id="simStep3" onclick="jumpToSimStep(3)">
+              <div class="sim-step-circle">3</div>
+              <div class="sim-step-title">3. Capture & Kantara Receipt</div>
+              <div class="sim-step-desc">VPC & ISO 27560 Token</div>
+            </div>
+            <div class="sim-step" id="simStep4" onclick="jumpToSimStep(4)">
+              <div class="sim-step-circle">4</div>
+              <div class="sim-step-title">4. Rights Webhook Sync</div>
+              <div class="sim-step-desc">Real-time Callback Dispatch</div>
+            </div>
+          </div>
+
+          <!-- Active Step Interactive Work Area -->
+          <div id="simActiveStepArea"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. API Endpoints & Code Snippets -->
+    <div id="integrationTabApi" style="display:none;">
+      <div class="card mb-3">
+        <div class="card-header">
+          <h3>Core DPDP Platform REST Endpoints</h3>
+          <span class="text-xs text-muted">All endpoints authenticated with Bearer API Key (Header: <code>Authorization: Bearer &lt;API_KEY&gt;</code>)</span>
+        </div>
+        <div class="card-body" id="apiDocsContainer"></div>
+      </div>
+    </div>
+
+    <!-- 3. API Keys View -->
+    <div id="integrationTabKeys" style="display:none;">
+      <div class="card">
+        <div class="card-header flex-between">
+          <div>
+            <h3>Active Municipal System API Keys</h3>
+            <span class="text-xs text-muted">Scoped machine-to-machine credentials with rate limits and role access</span>
+          </div>
+          <button class="btn btn-primary btn-sm action-btn" onclick="showGenerateApiKeyModal()">+ Issue API Key</button>
+        </div>
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>System / Consumer</th>
+                <th>API Key ID</th>
+                <th>Bearer Token Preview</th>
+                <th>Authorized Scopes</th>
+                <th>Rate Limit</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="apiKeysTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Webhook Subscriptions -->
+    <div id="integrationTabWebhooks" style="display:none;">
+      <div class="card">
+        <div class="card-header flex-between">
+          <div>
+            <h3>Outbound Webhook Event Subscriptions</h3>
+            <span class="text-xs text-muted">Cascades DPDP Section 11–14 events (Consent Withdrawal, Erasure Mandate, VPC Revocation) to downstream portals</span>
+          </div>
+          <button class="btn btn-primary btn-sm action-btn" onclick="showRegisterWebhookModal()">+ Register Webhook Endpoint</button>
+        </div>
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>System / Consumer</th>
+                <th>Callback Target URL</th>
+                <th>Subscribed Events</th>
+                <th>HMAC Signature</th>
+                <th>Health Status</th>
+                <th>Latency</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="webhooksTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Drop-In Web Component SDK -->
+    <div id="integrationTabSdk" style="display:none;">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h3>Drop-In Consent Modal Web Component (2-Line Integration)</h3>
+            <span class="text-xs text-muted">Frontend teams can embed full DPDP Section 5 & 6 compliance without building UI from scratch</span>
+          </div>
+        </div>
+        <div class="card-body" id="sdkComponentContainer"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CITIZEN PORTAL PAGE ═══ -->
+  <section id="page-citizen" class="page-section">
+    <div class="citizen-main">
+      <div class="citizen-welcome">
+        <h2 id="citizenWelcomeTitle">Namaste, Shri Ramesh K. Patel</h2>
+        <p>Welcome to Ahmedabad Municipal Corporation's Data Principal Self-Service Portal under the Digital Personal Data Protection Act, 2023.</p>
+      </div>
+
+      <div class="quick-actions" style="grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));">
+        <div class="quick-action-card" onclick="switchCitizenTab('data')">
+          <div class="qa-icon">📄</div>
+          <div class="qa-label" id="qaLabelData">View My Data</div>
+          <div class="qa-desc" id="qaDescData">See what data AMC holds</div>
+        </div>
+        <div class="quick-action-card" onclick="switchCitizenTab('consents')">
+          <div class="qa-icon">⚙️</div>
+          <div class="qa-label" id="qaLabelConsent">Consent Settings</div>
+          <div class="qa-desc" id="qaDescConsent">Manage active consents</div>
+        </div>
+        <div class="quick-action-card" onclick="showCitizenNewRequestModal()">
+          <div class="qa-icon">📝</div>
+          <div class="qa-label" id="qaLabelRights">Exercise Rights</div>
+          <div class="qa-desc" id="qaDescRights">Access, Correct, Erase</div>
+        </div>
+        <div class="quick-action-card" onclick="switchCitizenTab('nominee')">
+          <div class="qa-icon">👥</div>
+          <div class="qa-label" id="qaLabelNominee">My Nominee (Sec 14)</div>
+          <div class="qa-desc" id="qaDescNominee">Designate legal heir for rights</div>
+        </div>
+        <div class="quick-action-card" onclick="showCitizenGrievanceModal()">
+          <div class="qa-icon">💬</div>
+          <div class="qa-label" id="qaLabelGrievance">File Grievance</div>
+          <div class="qa-desc" id="qaDescGrievance">Report data concerns</div>
+        </div>
+        <div class="quick-action-card" onclick="switchCitizenTab('recipients')">
+          <div class="qa-icon">🤝</div>
+          <div class="qa-label" id="qaLabelRecipients">Who Has My Data</div>
+          <div class="qa-desc" id="qaDescRecipients">Sec 11(1)(b) Disclosures</div>
+        </div>
+      </div>
+
+      <!-- Citizen Content Area -->
+      <div id="citizenTabContent"></div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ══════════════════════════════════════════════════════════
+     MODAL
+     ══════════════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal-content" id="modalContent" onclick="event.stopPropagation()">
+    <!-- Dynamically populated -->
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     SCRIPTS
+     ══════════════════════════════════════════════════════════ -->
+<script src="/portal/js/data.js?v=2.5.0"></script>
+<script src="/portal/js/app.js?v=2.5.0"></script>
+<script src="/portal/js/mobile-nav.js"></script>
+
+
+</body>
+</html>

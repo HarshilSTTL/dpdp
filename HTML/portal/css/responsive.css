@@ -1,0 +1,49 @@
+/* Responsive overrides for the portal SPA (tablet + mobile). Loaded after styles.css. */
+.nav-toggle { display: none; }
+.nav-backdrop { display: none; }
+
+@media (max-width: 1024px) {
+  .main-content { padding: 20px 20px; }
+  .header { padding: 0 16px; }
+  .grid-3 { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+  /* off-canvas sidebar */
+  .sidebar { width: var(--sidebar-width); overflow-y: auto; transform: translateX(-100%); transition: transform .25s ease; z-index: 200; }
+  body.nav-open .sidebar { transform: translateX(0); box-shadow: 0 0 40px rgba(0, 0, 0, .4); }
+  body.nav-open .nav-backdrop { display: block; position: fixed; inset: 0; background: rgba(2, 6, 23, .55); z-index: 150; }
+  .nav-toggle { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border: 0; border-radius: 8px; background: var(--gray-100); font-size: 20px; cursor: pointer; flex-shrink: 0; }
+  .header-left { gap: 10px; min-width: 0; }
+  .header-left h1 { font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .header-left .breadcrumb { display: none; }
+  .header-right { gap: 8px; }
+  .header-right .btn, .user-info > div:first-child { display: none; }
+  .role-switcher-btn { max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  .main-content { padding: 16px 12px; }
+  .grid-2, .grid-3 { grid-template-columns: 1fr; gap: 16px; }
+  .stats-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .card-body { padding: 14px 14px; }
+  .card { max-width: 100%; }
+
+  /* tables scroll inside their container */
+  .card, .table-container, .table-wrap { overflow-x: auto; }
+  .data-table { min-width: 560px; }
+
+  /* modals */
+  .modal-content { width: 96vw !important; max-width: 96vw !important; max-height: 92vh; overflow-y: auto; }
+  .modal-body { padding: 16px; }
+
+  /* citizen topbar */
+  .citizen-topbar { flex-wrap: wrap; height: auto; padding: 8px 12px; gap: 8px; }
+  .ct-nav { order: 3; width: 100%; overflow-x: auto; white-space: nowrap; }
+  .ct-user { flex-wrap: wrap; gap: 6px; }
+  .tabs { overflow-x: auto; flex-wrap: nowrap; }
+  .login-container { width: 96vw; max-width: 96vw; }
+}
+
+@media (max-width: 480px) {
+  .stats-grid { grid-template-columns: 1fr; }
+  .role-switcher { display: none; }
+}

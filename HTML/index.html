@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DPDP-GovShield™ | Ahmedabad Municipal Corporation (AMC) Citizen Privacy &amp; Consent Portal</title>
+  <meta name="description" content="Sovereign municipal data protection governance platform operationalizing the Digital Personal Data Protection Act, 2023 &amp; DPDP Rules, 2025 across 13 civic departments.">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/css/landing.css">
+</head>
+<body>
+  <!-- ═══ Header ═══ -->
+  <header class="site-header">
+    <div class="statbar">
+      <div><span class="dot"></span><strong data-i18n="statutoryBanner"></strong></div>
+      <div class="row" style="gap:16px">
+        <span class="hide-md faint">🇮🇳 NIC Meghraj Sovereign Subnet</span>
+        <a href="tel:+917925391811">📞 DPO Direct: +91 79 2539 1811</a>
+      </div>
+    </div>
+    <div class="container nav">
+      <a class="brand" href="/">
+        <span class="brand-logo" aria-hidden="true">🛡️</span>
+        <span>
+          <span class="row" style="gap:0"><span class="brand-name" data-i18n="civicBody"></span><span class="brand-tag">DPDP-GovShield™</span></span>
+          <p class="brand-sub">Sovereign Municipal Privacy Governance &amp; Section 6 Consent Gateway</p>
+        </span>
+      </a>
+      <div class="nav-actions">
+        <div class="seg" id="langSwitch" role="group" aria-label="Language">
+          <button type="button" data-lang="en" class="active">English</button>
+          <button type="button" data-lang="gu">ગુજરાતી</button>
+          <button type="button" data-lang="hi">हिन्दी</button>
+        </div>
+        <button type="button" id="rolePill" class="badge hide-md" style="cursor:pointer;font-size:12px;padding:6px 12px" title="Click to switch municipal role perspective"></button>
+        <a class="btn btn-accent hide-md" href="/portal/" title="Launch Full 12-Screen Compliance Suite per SRS">🛡️ Compliance Suite (12 Screens) 🚀</a>
+        <button type="button" class="btn btn-primary" data-open-auth>🔑 <span data-i18n="loginPrompt"></span></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══ 10 Invariant guardrails banner ═══ -->
+  <section class="guard" aria-label="Statutory guardrails">
+    <div class="container">
+      <div class="row-between">
+        <div class="row">
+          <span style="font-size:20px">✅</span>
+          <div>
+            <h2>10 Invariant Statutory Guardrails Verified <span class="guard-badge">10/10 Passed</span></h2>
+            <p>Enforcing Zero Plaintext Aadhaar, Zero Fake 82% Fines, and SIM-DRILL- Watermarking.</p>
+          </div>
+        </div>
+        <button type="button" class="btn btn-dark btn-sm" id="guardToggle" aria-expanded="false" aria-controls="guardList">Audit 10 Guardrails ▾</button>
+      </div>
+      <div class="grid grid-3" style="margin-top:16px">
+        <div class="guard-tile"><span>⚠️ No Fake 82% Fine Formulas</span><p>Strict Section 33(2) Qualitative Legal Defense; no fictitious mitigation formulas.</p></div>
+        <div class="guard-tile"><span>🔒 Zero Plaintext Aadhaar</span><p>UUIDv7 opaque keys + HMAC-SHA256 blind indexing for zero-knowledge searches.</p></div>
+        <div class="guard-tile"><span>🛡️ Watermarked Cyber Drills</span><p>Simulations prefixed SIM-DRILL- with SIM-CERTIN-DRILL- tokens prevent false panic.</p></div>
+      </div>
+      <div id="guardList" class="grid grid-2 hidden" style="margin-top:20px;padding-top:16px;border-top:1px solid #1e293b"></div>
+    </div>
+  </section>
+
+  <main class="stack-lg" style="padding-bottom:16px">
+    <!-- Hero -->
+    <section class="hero">
+      <span class="pill">✨ <span data-i18n="civicBody"></span></span>
+      <h1 data-i18n="portalTitle"></h1>
+      <p data-i18n="portalSubtitle"></p>
+      <div class="row" style="justify-content:center;margin-top:18px">
+        <a class="btn btn-accent" href="/portal/">🛡️ Launch Complete Compliance Suite (All 12 Screens) 🚀</a>
+        <button type="button" class="btn btn-primary" data-open-auth>Role Switcher (16 Municipal Personas) →</button>
+      </div>
+    </section>
+
+    <!-- Section 6 consent transparency -->
+    <section class="container">
+      <div class="panel-dark stack">
+        <div class="row-between">
+          <div>
+            <span class="tag tag-blue" data-i18n="sec6Badge"></span>
+            <h2 data-i18n="sec6Title"></h2>
+          </div>
+          <button type="button" class="btn btn-accent btn-sm" id="btnReceipt">⬇ Kantara v1.1.0 Receipt</button>
+        </div>
+        <p class="muted" style="color:#cbd5e1;font-size:14px;max-width:880px;margin:0" data-i18n="sec6Description"></p>
+        <div class="grid grid-3">
+          <div class="glass"><h4 style="color:#fbbf24">📄 Purpose Limitation</h4><p data-i18n="sec6Point1"></p></div>
+          <div class="glass"><h4 style="color:#34d399">🛑 Section 6(4) Withdrawal</h4><p data-i18n="sec6Point2"></p></div>
+          <div class="glass"><h4 style="color:#93c5fd">✔ Kantara v1.1.0 Receipts</h4><p data-i18n="sec6Point3"></p></div>
+        </div>
+        <div class="row-between">
+          <span class="small mono" style="color:#94a3b8">Statutory Notice Reference: <code>SEC6-NOT-AMC-2026-V2.4</code></span>
+          <button type="button" class="link-btn" style="color:#bfdbfe;text-decoration:none;font-weight:600;font-size:12px;font-family:inherit" data-open-auth><span data-i18n="sec6WithdrawConsent"></span> →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12-screen suite -->
+    <section class="container">
+      <div class="panel-dark stack">
+        <div class="row-between" style="align-items:flex-start">
+          <div style="max-width:760px">
+            <span class="tag tag-amber">SRS v2.5 Specification Adherence</span>
+            <h2>Complete 12-Screen Multi-Role Compliance Suite</h2>
+            <p style="color:#cbd5e1;font-size:13px;margin:0">Built strictly against <code style="color:#fcd34d">DPDP_GovShield_Full_SRS.md</code> and the Technical Design Document. Covers all 15 actor roles, 24 interactive modals, live Chart.js analytics, and statutory governance workflows.</p>
+          </div>
+          <a class="btn btn-accent" href="/portal/">Launch Full Suite (SPA) 🚀</a>
+        </div>
+        <div class="grid grid-4" id="screenGrid"></div>
+      </div>
+    </section>
+
+    <!-- 4 action cards -->
+    <section class="container stack">
+      <div class="text-center">
+        <h2 style="margin:0 0 4px;font-size:24px" data-i18n="cardsTitle"></h2>
+        <p class="muted small" style="margin:0" data-i18n="cardsSubtitle"></p>
+      </div>
+      <div class="grid grid-4" style="gap:24px">
+        <div class="card lift action-card">
+          <div><div class="icon-chip tone-blue">📄</div><h3 data-i18n="card1Title"></h3><p data-i18n="card1Desc"></p></div>
+          <a class="link-action tone-blue" href="/portal/?role=citizen&amp;page=citizen"><span data-i18n="card1Action"></span> →</a>
+        </div>
+        <div class="card lift action-card">
+          <div><div class="icon-chip tone-amber">⚖️</div><h3 data-i18n="card2Title"></h3><p data-i18n="card2Desc"></p></div>
+          <div class="stack" style="margin:0">
+            <a class="link-action tone-amber" href="/portal/?role=citizen&amp;page=citizen"><span data-i18n="card2Action"></span> →</a>
+            <button type="button" class="link-btn btn-block" id="btnRefusal" style="text-align:center;margin-top:8px">Simulate Sec 17(4) Refusal Notice</button>
+          </div>
+        </div>
+        <div class="card lift action-card">
+          <div><div class="icon-chip tone-green">🚨</div><h3 data-i18n="card3Title"></h3><p data-i18n="card3Desc"></p></div>
+          <a class="link-action tone-green" href="/portal/?role=citizen&amp;page=citizen"><span data-i18n="card3Action"></span> →</a>
+        </div>
+        <div class="card lift action-card">
+          <div><div class="icon-chip tone-purple">👥</div><h3 data-i18n="card4Title"></h3><p data-i18n="card4Desc"></p></div>
+          <a class="link-action tone-purple" href="/portal/?role=citizen&amp;page=citizen"><span data-i18n="card4Action"></span> →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Role dashboards -->
+    <section class="container stack">
+      <div class="text-center">
+        <span class="tag tag-light">Role Dashboards</span>
+        <h2 style="margin:8px 0 4px;font-size:24px">Role-Specific Workspaces</h2>
+        <p class="muted small" style="margin:0">Citizen, DPO, Auditor and Historical PII discovery consoles.</p>
+      </div>
+      <div class="grid grid-4">
+        <a class="card lift" href="/citizen/" style="text-decoration:none"><h3>👤 Citizen Portal</h3><p>Consents &amp; grievances.</p></a>
+        <a class="card lift" href="/dpo/" style="text-decoration:none"><h3>🛡️ DPO Dashboard</h3><p>Compliance command center.</p></a>
+        <a class="card lift" href="/auditor/" style="text-decoration:none"><h3>🔍 Auditor View</h3><p>Probes, Merkle proofs, defense dossier.</p></a>
+        <a class="card lift" href="/historical/" style="text-decoration:none"><h3>🗄️ Historical Data</h3><p>PII discovery &amp; notice campaigns.</p></a>
+      </div>
+    </section>
+
+    <!-- Backend testbench (mock) -->
+    <section class="container">
+      <div class="text-center stack" style="margin-bottom:24px">
+        <span class="tag tag-light">Backend Integration Testbench</span>
+        <h2 style="margin:8px 0 4px;font-size:24px">Sovereign Compliance Engine Endpoints</h2>
+        <p class="muted small" style="margin:0 auto;max-width:560px">Run the compliance, rights, crypto and incident engines in your browser using deterministic local logic that mirrors the backend.</p>
+      </div>
+      <div class="panel-dark stack" id="testbench" style="background:var(--c-dark);border-color:var(--c-dark-2)">
+        <div class="row" style="padding-bottom:12px;border-bottom:1px solid #1e293b">
+          <span style="font-size:20px">⌨️</span>
+          <div>
+            <div class="bold">Compliance Engine Live Client <span class="guard-badge" style="background:#172554;color:#93c5fd;border-color:#1e40af">REST / JSON (simulated)</span></div>
+            <div class="small" style="color:#94a3b8">Interactive testbench with statutory invariant validation.</div>
+          </div>
+        </div>
+        <div class="row mono small" id="tbTabs">
+          <button type="button" class="btn btn-sm btn-primary" data-tab="child">🛡 /api/v1/compliance/classify-child</button>
+          <button type="button" class="btn btn-sm btn-dark" data-tab="erasure">📄 /api/v1/rights/erasure-refusal</button>
+          <button type="button" class="btn btn-sm btn-dark" data-tab="crypto">🔑 /api/v1/crypto/blind-index</button>
+          <button type="button" class="btn btn-sm btn-dark" data-tab="incident">⏱ /api/v1/incidents/declare</button>
+        </div>
+        <div id="tbBody"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ═══ Footer ═══ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:32px">
+        <div style="grid-column:span 2;min-width:min(100%,300px)">
+          <h4 data-i18n="dpoTitle"></h4>
+          <span class="mono xsmall" style="color:#34d399" data-i18n="dpoBadge"></span>
+          <div style="background:rgba(15,23,42,.9);border:1px solid #1e293b;border-radius:8px;padding:16px;margin-top:10px">
+            <div class="row-between"><strong style="color:#fff;font-size:14px" data-i18n="dpoName"></strong><span class="mono xsmall badge badge-blue">Rule 9 Appointee</span></div>
+            <p style="color:#94a3b8" data-i18n="dpoDesignation"></p>
+            <p>📍 <span data-i18n="dpoAddress"></span></p>
+            <p>✉️ <a class="mono" id="dpoEmail" href="#"></a></p>
+            <p>📞 <a class="mono" id="dpoPhone" href="#" style="color:#cbd5e1"></a></p>
+            <p style="color:#94a3b8">🕒 <span data-i18n="dpoWorkingHours"></span></p>
+            <p class="xsmall" style="margin-top:10px;padding:8px;border-radius:6px;background:rgba(23,37,84,.5);color:#bfdbfe">ℹ️ <span data-i18n="dpoMandate"></span></p>
+          </div>
+        </div>
+        <div>
+          <h4>📄 Statutory Framework</h4>
+          <p>✅ Digital Personal Data Protection Act, 2023</p>
+          <p>✅ Notified DPDP Rules, 2025</p>
+          <p>✅ Rule 4 Pre-Commencement Testbench</p>
+          <p>✅ Kantara Initiative v1.1.0 JSON-LD</p>
+          <p>✅ ISO/IEC 27701:2019 Privacy Extension</p>
+        </div>
+        <div>
+          <h4>🖥️ Sovereign Hosting</h4>
+          <p><strong style="color:#e2e8f0">NIC Meghraj &amp; GSWAN</strong><br><span class="xsmall" style="color:#34d399">Section 16: Zero Foreign Egress</span></p>
+          <p><strong style="color:#e2e8f0">FIPS 140-3 Luna HSM</strong><br><span class="xsmall" style="color:#60a5fa">HMAC-SHA256 Blind Indexing</span></p>
+          <p><strong style="color:#e2e8f0">PostgreSQL 16 Bi-Temporal</strong><br><span class="xsmall" style="color:#fbbf24">Row-Level Security (RLS) Active</span></p>
+        </div>
+      </div>
+      <div class="row-between xsmall" style="margin-top:32px;color:#64748b">
+        <span>© 2026 Ahmedabad Municipal Corporation (AMC). DPDP-GovShield™ Enterprise Implementation.</span>
+        <span>Implementation Partner: Silver Touch Technologies Ltd. · Document Ref: MES-DPDP-AMC-2026-V1.0</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/common.js"></script>
+  <script src="/js/data-translations.js"></script>
+  <script src="/js/data-roles.js"></script>
+  <script src="/js/data-invariants.js"></script>
+  <script src="/js/pages/mock-engine.js"></script>
+  <script src="/js/pages/landing.js"></script>
+</body>
+</html>

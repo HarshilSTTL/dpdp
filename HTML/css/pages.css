@@ -1,0 +1,38 @@
+/* Page-specific additions for historical (dark theme). Uses site.css tokens only. */
+body.dark-page { background: var(--c-dark); color: #f1f5f9; }
+.dk-wrap { max-width: var(--container); margin: 0 auto; padding: 24px 16px; width: 100%; }
+@media (min-width: 640px) { .dk-wrap { padding: 32px; } }
+.dk-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; border-bottom: 1px solid var(--c-dark-2); padding-bottom: 24px; margin-bottom: 32px; }
+.dk-head h1 { margin: 0; font-size: clamp(18px, 3vw, 24px); }
+.dk-head p { margin: 4px 0 0; font-size: 14px; color: var(--c-text-faint); }
+.dk-tabs { display: flex; gap: 8px; flex-wrap: wrap; border-bottom: 1px solid var(--c-dark-2); margin-bottom: 24px; }
+.dk-tabs button { font: inherit; font-size: 12px; font-weight: 700; padding: 12px 18px; border: 0; border-bottom: 2px solid transparent; background: transparent; color: var(--c-text-faint); cursor: pointer; }
+.dk-tabs button:hover { color: #e2e8f0; }
+.dk-tabs button.active { border-bottom-color: var(--c-accent); color: var(--c-accent-hover); background: rgba(30,41,59,.5); }
+.dk-card { background: var(--c-dark-2); border: 1px solid var(--c-dark-3); border-radius: var(--radius); padding: 24px; }
+.dk-card h2, .dk-card h3 { margin: 0 0 12px; }
+.dk-card .amber { color: var(--c-accent-hover); }
+.dk-lbl { display: block; font-size: 12px; font-weight: 500; color: var(--c-text-faint); margin-bottom: 4px; }
+.dk-field { width: 100%; font: inherit; font-size: 12px; padding: 10px 12px; background: var(--c-dark); border: 1px solid var(--c-dark-3); border-radius: var(--radius-sm); color: #e2e8f0; }
+.dk-field:focus { outline: none; border-color: var(--c-accent); }
+.dk-btn { font: inherit; font-size: 12px; font-weight: 700; padding: 10px 16px; border-radius: var(--radius-sm); border: 0; cursor: pointer; color: #fff; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+.dk-btn:disabled { opacity: .5; cursor: not-allowed; }
+.dk-btn.amber { background: #d97706; } .dk-btn.amber:hover:not(:disabled) { background: var(--c-accent); }
+.dk-btn.green { background: var(--c-success); }
+.dk-btn.slate { background: var(--c-dark-3); color: #e2e8f0; border: 1px solid var(--c-dark-3); }
+.dk-btn.slate:hover { background: #475569; }
+.dk-ok { background: rgba(5,150,105,.15); border: 1px solid rgba(5,150,105,.5); color: #6ee7b7; border-radius: var(--radius-sm); padding: 16px; font-size: 12px; }
+.dk-sub { background: var(--c-dark); border: 1px solid var(--c-dark-2); border-radius: var(--radius-sm); padding: 10px; }
+.dk-table { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 760px; }
+.dk-table th { text-align: left; padding: 12px; color: var(--c-text-faint); background: rgba(15,23,42,.5); border-bottom: 1px solid var(--c-dark-3); }
+.dk-table td { padding: 12px; border-bottom: 1px solid rgba(51,65,85,.5); vertical-align: top; }
+.dk-chip { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 4px; background: rgba(30,58,138,.5); color: #93c5fd; border: 1px solid var(--c-primary-hover); }
+.dk-pill-ok { font-size: 10px; font-weight: 700; padding: 2px 10px; border-radius: 999px; background: rgba(5,150,105,.25); color: #6ee7b7; border: 1px solid var(--c-success); }
+.dk-verdict { display: inline-block; font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 4px; border: 1px solid; }
+.dk-verdict.ok { background: rgba(5,150,105,.2); color: #34d399; border-color: var(--c-success); }
+.dk-verdict.bad { background: rgba(220,38,38,.2); color: #fca5a5; border-color: var(--c-danger); }
+.dk-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; background: var(--c-dark); padding: 12px; border-radius: var(--radius-sm); text-align: center; }
+.dk-stats .n { font-size: 16px; font-weight: 700; }
+.dk-stats .l { font-size: 10px; color: var(--c-text-muted); }
+.dk-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+@media (max-width: 480px) { .dk-stats { grid-template-columns: 1fr; } }

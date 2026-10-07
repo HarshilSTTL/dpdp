@@ -1,0 +1,33 @@
+/* Landing page specific styles (colour tokens come from site.css) */
+.tb-grid { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); padding-top: 8px; }
+.tb-form { background: rgba(2, 6, 23, .6); border: 1px solid #1e293b; border-radius: var(--radius); padding: 16px; font-size: 12px; }
+.tb-form h4 { margin: 0 0 12px; font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--c-accent-hover); }
+.tb-form label { display: block; color: #94a3b8; margin: 10px 0 4px; }
+.tb-form .field { background: #0f172a; border-color: #334155; color: #e2e8f0; font-size: 12px; }
+.tb-form .chk { display: flex; align-items: center; gap: 8px; margin-top: 10px; color: #cbd5e1; }
+.tb-form .chk label { margin: 0; color: #cbd5e1; }
+.tb-out { background: rgba(2, 6, 23, .6); border: 1px solid #1e293b; border-radius: var(--radius); padding: 16px; font-size: 12px; color: #cbd5e1; min-height: 120px; word-break: break-word; }
+.tb-out .ok { color: #34d399; font-weight: 700; }
+.tb-out .bad { color: #f87171; font-weight: 700; }
+.tb-out .note { margin-top: 10px; padding: 10px; border-radius: 8px; background: #172554; border: 1px solid #1e40af; color: #bfdbfe; }
+.tb-out pre { margin: 8px 0 0; white-space: pre-wrap; font-family: var(--font-mono); font-size: 11px; color: #34d399; }
+.modal .kv { font-size: 12px; margin: 8px 0; }
+.modal .appeal { background: var(--c-bg); border: 1px solid var(--c-border); border-radius: 8px; padding: 10px; font-size: 12px; margin-top: 8px; }
+.role-card { border: 1px solid var(--c-border); border-radius: var(--radius); padding: 14px; cursor: pointer; background: #fff; transition: border-color .15s, background .15s; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; text-align: left; font: inherit; color: inherit; }
+.role-card:hover { border-color: var(--c-border-strong); background: var(--c-bg); }
+.role-card.active { border-color: var(--c-primary-hover); background: var(--c-primary-soft); box-shadow: 0 0 0 1px var(--c-primary-hover); }
+.role-card h4 { margin: 4px 0; font-size: 14px; }
+.role-card p { margin: 0; font-size: 12px; color: var(--c-text-muted); line-height: 1.4; }
+.role-card .meta { border-top: 1px solid #f1f5f9; padding-top: 8px; font-size: 11px; color: var(--c-text-faint); display: flex; justify-content: space-between; gap: 8px; }
+.modal-tabs { display: flex; border-bottom: 1px solid var(--c-border); background: var(--c-bg); font-size: 12px; font-weight: 600; }
+.modal-tabs button { flex: 1; padding: 12px 8px; border: 0; border-bottom: 2px solid transparent; background: transparent; cursor: pointer; font: inherit; font-weight: 600; color: var(--c-text-muted); }
+.modal-tabs button.active { border-bottom-color: var(--c-primary); color: var(--c-primary); background: #fff; }
+.modal.auth { padding: 0; max-width: 768px; display: flex; flex-direction: column; overflow: hidden; }
+.auth-head { background: var(--c-dark); color: #fff; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.auth-head h2 { margin: 0; font-size: 16px; }
+.auth-head p { margin: 2px 0 0; font-size: 12px; color: #94a3b8; }
+.auth-head .x { color: #94a3b8; }
+.auth-body { padding: 20px; overflow-y: auto; flex: 1; }
+.auth-foot { background: var(--c-bg); border-top: 1px solid var(--c-border); padding: 12px 20px; display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; font-size: 12px; color: var(--c-text-muted); }
+.auth-narrow { max-width: 420px; margin: 0 auto; }
+@media (max-width: 520px) { .modal-tabs { font-size: 11px; } .modal-tabs button { padding: 10px 4px; } }

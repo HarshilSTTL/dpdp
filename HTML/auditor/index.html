@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Statutory Auditor Command Center - DPDP-GovShield</title>
+<meta name="description" content="Independent CERT-In / CAG / DPBI regulatory portal for the Ahmedabad Municipal Corporation: probes, defense dossier, Merkle verifier and processor DPA audits.">
+<link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+<header class="app-header">
+  <div class="row" style="gap:16px;flex-wrap:nowrap">
+    <div class="avatar" aria-hidden="true">&#128737;&#65039;</div>
+    <div>
+      <div class="row" style="gap:8px">
+        <h1>DPDP-GovShield Statutory Auditor &amp; GRC Command Center</h1>
+        <span class="badge badge-blue">SCR-AUD-001 (READ-ONLY AUDITOR)</span>
+      </div>
+      <p>Ahmedabad Municipal Corporation &middot; Independent CERT-In / CAG / DPBI Regulatory Portal</p>
+    </div>
+  </div>
+  <div class="row">
+    <button id="btn-probes-top" class="btn btn-primary btn-sm" type="button"><span class="spin-slot" aria-hidden="true">&#9889;</span> <span class="lbl-t">Run Automated Probes</span></button>
+    <a class="btn btn-dark btn-sm" href="/dpo/">DPO View</a>
+    <a class="btn btn-dark btn-sm" href="/portal/">Portal</a>
+  </div>
+</header>
+
+<main class="app-main stack-lg">
+  <div id="global-error" class="alert alert-error row-between hidden" role="alert">
+    <span id="global-error-msg"></span>
+    <button id="dismiss-error" class="btn btn-outline btn-sm" type="button">Dismiss</button>
+  </div>
+
+  <div class="grid grid-4">
+    <div class="stat">
+      <div class="l bold" style="text-transform:uppercase;letter-spacing:.05em">Enterprise DPDP Score</div>
+      <div class="n" style="color:var(--c-success)">100.0% <span aria-hidden="true">&#9989;</span></div>
+      <div class="xsmall muted">120/120 Statutory Controls Passed</div>
+    </div>
+    <div class="stat">
+      <div class="l bold" style="text-transform:uppercase;letter-spacing:.05em">Plaintext Aadhaar Columns</div>
+      <div class="n" style="color:var(--c-primary-hover)">0</div>
+      <div class="xsmall muted">100% HMAC-SHA256 Blind Indexed</div>
+    </div>
+    <div class="stat">
+      <div class="l bold" style="text-transform:uppercase;letter-spacing:.05em">Rule 14(2) 90d SLA Breaches</div>
+      <div class="n" style="color:var(--c-success)">0</div>
+      <div class="xsmall muted">Avg Resolution: 14 Days</div>
+    </div>
+    <div class="stat">
+      <div class="l bold" style="text-transform:uppercase;letter-spacing:.05em">WORM Merkle Chain Status</div>
+      <div class="n">100% <span class="badge badge-green">IMMUTABLE</span></div>
+      <div class="xsmall muted">SQLSTATE 27000 Trigger Active</div>
+    </div>
+  </div>
+
+  <div class="tabs" role="tablist" aria-label="Auditor sections">
+    <button type="button" role="tab" data-tab="overview" class="active">&#128450;&#65039; 13-Department Control Matrix</button>
+    <button type="button" role="tab" data-tab="probes">&#128187; Automated Infrastructure Probes</button>
+    <button type="button" role="tab" data-tab="dossier">&#128196; Section 33(2) Defense Dossier</button>
+    <button type="button" role="tab" data-tab="merkle">&#127942; In-Browser Merkle Verifier</button>
+    <button type="button" role="tab" data-tab="processors">&#128451;&#65039; Vendor Processor DPA Audits</button>
+  </div>
+
+  <!-- Tab 1 -->
+  <section id="tab-overview" class="card stack" role="tabpanel">
+    <div class="row-between">
+      <div>
+        <h3 style="font-size:16px">13 Municipal Departments Continuous Control Heatmap</h3>
+        <p>Continuous statutory audit status across all AMC administrative operational units.</p>
+      </div>
+      <span class="badge badge-green">All 13 Units Passing</span>
+    </div>
+    <div class="table-wrap">
+      <table class="tbl">
+        <thead><tr><th>Dept ID</th><th>Department Name</th><th>Primary PII Category</th><th>Legal Basis</th><th>Plaintext Aadhaar</th><th>Audit Verdict</th></tr></thead>
+        <tbody id="dept-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Tab 2 -->
+  <section id="tab-probes" class="card stack hidden" role="tabpanel">
+    <div class="row-between">
+      <div>
+        <h3 style="font-size:16px">Live Continuous Infrastructure Probes</h3>
+        <p>Automated background security scanners testing 8 core statutory controls.</p>
+      </div>
+      <button id="btn-probes" class="btn btn-primary btn-sm" type="button"><span class="lbl-t">Execute All Probes Now</span></button>
+    </div>
+    <pre id="probe-out" class="code-block" style="min-height:220px;white-space:pre-wrap;max-height:none" aria-live="polite"></pre>
+  </section>
+
+  <!-- Tab 3 -->
+  <section id="tab-dossier" class="card stack hidden" role="tabpanel">
+    <div class="row-between">
+      <div>
+        <h3 style="font-size:16px">Section 33(2) Evidentiary Defense Dossier Generator</h3>
+        <p>Assembles past 12 months of daily control checks and HSM logs to mitigate &#8377;250 Cr penalty ceilings.</p>
+      </div>
+      <div class="row">
+        <button id="btn-download" class="btn btn-dark btn-sm hidden" type="button">&#11015;&#65039; Download JSON</button>
+        <button id="btn-dossier" class="btn btn-success btn-sm" type="button"><span class="spin-slot" aria-hidden="true">&#128196;</span> <span class="lbl-t">Generate Defense Dossier</span></button>
+      </div>
+    </div>
+    <div id="dossier-out"></div>
+  </section>
+
+  <!-- Tab 4 -->
+  <section id="tab-merkle" class="card stack hidden" role="tabpanel">
+    <div>
+      <h3 style="font-size:16px">Independent In-Browser Merkle Root Verifier</h3>
+      <p>Allows external auditors to verify compliance leaf hashes without connecting to production databases.</p>
+    </div>
+    <div class="grid grid-2">
+      <div>
+        <label class="lbl" for="leaf-index">Leaf Index (aud_merkle_log)</label>
+        <input id="leaf-index" class="field mono" type="text" inputmode="numeric" value="84201" autocomplete="off">
+      </div>
+      <div>
+        <label class="lbl" for="leaf-hash">Current Leaf Hash (SHA-256)</label>
+        <input id="leaf-hash" class="field mono" type="text" value="7A3F9D1E8B2C4E5A6F7B8C9D0E1F2A3B4C5D6E7F8A9B0C1D2E3F4A5B6C7D8E9F" autocomplete="off" spellcheck="false">
+      </div>
+    </div>
+    <div><button id="btn-merkle" class="btn btn-primary btn-sm" type="button"><span class="lbl-t">Verify Mathematical Merkle Proof</span></button></div>
+    <div id="merkle-out"></div>
+  </section>
+
+  <!-- Tab 5 -->
+  <section id="tab-processors" class="card stack hidden" role="tabpanel">
+    <div>
+      <h3 style="font-size:16px">Third-Party IT Contractor DPA Compliance Status</h3>
+      <p>Mandatory Data Processing Agreement clauses under Section 8(2) &amp; Rule 6(g).</p>
+    </div>
+    <div id="proc-out"></div>
+  </section>
+</main>
+
+<script src="/js/common.js"></script>
+<script src="/js/pages/auditor.js"></script>
+</body>
+</html>
